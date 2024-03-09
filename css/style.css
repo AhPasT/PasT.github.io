@@ -2161,3 +2161,6 @@ pre code {
   border-color: #fff;
   font-weight: 100;
 }
+.vpower {
+  display: none;
+}
