@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="剖析”翻墙”技术及其在网络审查环境下的应用在当今互联网时代，获取开放和自由的网络信息已成为不可或缺的需求。但由于某些国家和地区存在网络审查和信息封锁，需要借助“翻墙”技术来突破限制。所谓“翻墙”是一种绕过网络审查的手段，目的是访问遭到屏蔽或封锁的外部网站和互联网资源。 一、GFW的运作背景与机制GFW的背景GFW（Great Firewall，防火长城）是中国政府实施的互联网审查和监控系统。其主要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络审查攻防之战,翻墙技术的全面解析">
+<meta property="og:url" content="http://example.com/2024/05/26/fq/index.html">
+<meta property="og:site_name" content="PasT.">
+<meta property="og:description" content="剖析”翻墙”技术及其在网络审查环境下的应用在当今互联网时代，获取开放和自由的网络信息已成为不可或缺的需求。但由于某些国家和地区存在网络审查和信息封锁，需要借助“翻墙”技术来突破限制。所谓“翻墙”是一种绕过网络审查的手段，目的是访问遭到屏蔽或封锁的外部网站和互联网资源。 一、GFW的运作背景与机制GFW的背景GFW（Great Firewall，防火长城）是中国政府实施的互联网审查和监控系统。其主要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/gfw.jpg">
+<meta property="article:published_time" content="2024-05-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-26T03:23:07.049Z">
+<meta property="article:author" content="PasT.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/gfw.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>网络审查攻防之战,翻墙技术的全面解析</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
+
+    
+<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- rss -->
+    
+    
+    <!-- jquery -->
+    
+<script src="/lib/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 7.0.0"></head>
+
+    <!-- 引入流星雨样式 -->
+    <link rel="stylesheet" href="/css/meteor.css">
+</head>
+<body>
+    <div class="banner">
+<div id="blogtitel" class="blogtitel">PasT.</div>
+<ul id="wrapper" class="wrapper">
+  <div class="sun">
+    <div class="star"></div>
+  </div>
+  <div class="mercury">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="venus">
+    <div class="planet">
+      <div class="shadow"></div>
+    </div>
+  </div>
+  <div class="earth">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="mars">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+  <div class="jupiter">
+    <div class="planet"><div class="shadow"></div></div>
+  </div>
+</ul>
+</div>
+
+    <!-- 流星雨背景容器 -->
+    <div id="starfield"></div>
+    <div class="background">
+      
+        <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/AhPasT/PasT.github.io">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2024/06/18/ai/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
+        
+        
+        <li><a class="icon" href="/2024/05/10/hj/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
+        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/05/26/fq/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/05/26/fq/&text=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/05/26/fq/&is_video=false&description=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络审查攻防之战,翻墙技术的全面解析&body=Check out this article: http://example.com/2024/05/26/fq/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/05/26/fq/&name=网络审查攻防之战,翻墙技术的全面解析&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%96%E6%9E%90%E2%80%9D%E7%BF%BB%E5%A2%99%E2%80%9D%E6%8A%80%E6%9C%AF%E5%8F%8A%E5%85%B6%E5%9C%A8%E7%BD%91%E7%BB%9C%E5%AE%A1%E6%9F%A5%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">剖析”翻墙”技术及其在网络审查环境下的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81GFW%E7%9A%84%E8%BF%90%E4%BD%9C%E8%83%8C%E6%99%AF%E4%B8%8E%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">一、GFW的运作背景与机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GFW%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">GFW的背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GFW%E7%9A%84%E8%BF%90%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">GFW的运作机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BB%95%E8%BF%87GFW%E7%9A%84%E4%B8%BB%E8%A6%81%E2%80%9C%E7%BF%BB%E5%A2%99%E2%80%9D%E6%8A%80%E6%9C%AF"><span class="toc-number">1.2.</span> <span class="toc-text">二、绕过GFW的主要“翻墙”技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BA%86%E6%96%B9%E4%BE%BF%E5%A4%A7%E5%AE%B6%E7%90%86%E8%A7%A3%E6%88%91%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E6%9D%A5%E5%90%91%E5%A4%A7%E5%AE%B6%E8%AE%B2%E8%A7%A3%EF%BC%9A%E5%B0%8F%E6%98%8E%E7%9A%84%E7%A7%98%E5%AF%86%E4%BF%A1%E4%BD%BF"><span class="toc-number">1.2.1.</span> <span class="toc-text">为了方便大家理解我通过一个故事来向大家讲解：小明的秘密信使</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E6%98%8E%E7%9A%84%E5%9B%B0%E5%A2%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">小明的困境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%98%E5%AF%86%E4%BF%A1%E4%BD%BF%EF%BC%88VPN%EF%BC%89%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">秘密信使（VPN）的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E6%98%8E%E7%9A%84%E8%A1%8C%E5%8A%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">小明的行动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C"><span class="toc-number">1.2.5.</span> <span class="toc-text">结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E8%B0%83%E4%B8%80%E4%B8%8B-%E8%AF%B7%E5%90%84%E4%BD%8D%E4%BA%86%E8%A7%A3%E5%B9%B6%E9%81%B5%E5%AE%88%E5%BD%93%E5%9C%B0%E7%9B%B8%E5%85%B3%E6%B3%95%E5%BE%8B%E6%B3%95%E8%A7%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">强调一下,请各位了解并遵守当地相关法律法规!!!</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A4%E6%96%87%E7%AB%A0%E4%BB%85%E7%94%A8%E4%BA%8E%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81-%E6%97%A0%E4%BB%BB%E4%BD%95%E4%B8%AA%E4%BA%BA%E7%94%A8%E6%84%8F%E5%8F%8A%E4%B8%8D%E8%89%AF%E5%BC%95%E5%AF%BC"><span class="toc-number">1.4.</span> <span class="toc-text">此文章仅用于网络技术交流,无任何个人用意及不良引导</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+      
+      <div class="content index width mx-auto px2 my4">
+          
+          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        网络审查攻防之战,翻墙技术的全面解析
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">PasT.</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2024-05-25T16:00:00.000Z" itemprop="datePublished">2024-05-26</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="剖析”翻墙”技术及其在网络审查环境下的应用"><a href="#剖析”翻墙”技术及其在网络审查环境下的应用" class="headerlink" title="剖析”翻墙”技术及其在网络审查环境下的应用"></a>剖析”翻墙”技术及其在网络审查环境下的应用</h1><p>在当今互联网时代，获取开放和自由的网络信息已成为不可或缺的需求。但由于某些国家和地区存在网络审查和信息封锁，需要借助“翻墙”技术来突破限制。所谓“翻墙”是一种绕过网络审查的手段，目的是访问遭到屏蔽或封锁的外部网站和互联网资源。</p>
+<h2 id="一、GFW的运作背景与机制"><a href="#一、GFW的运作背景与机制" class="headerlink" title="一、GFW的运作背景与机制"></a>一、GFW的运作背景与机制</h2><h3 id="GFW的背景"><a href="#GFW的背景" class="headerlink" title="GFW的背景"></a>GFW的背景</h3><p>GFW（Great Firewall，防火长城）是中国政府实施的互联网审查和监控系统。其主要目标是通过技术手段过滤和阻止不符合政府政策的内容，从而控制信息的传播，维护国家安全和社会稳定。</p>
+<h3 id="GFW的运作机制"><a href="#GFW的运作机制" class="headerlink" title="GFW的运作机制"></a>GFW的运作机制</h3><p>GFW通过多种技术手段对互联网流量进行监控和过滤，主要包括以下几种：</p>
+<ol>
+<li><p><strong>IP地址黑名单过滤</strong><br>GFW维护着大量被禁止访问网站的IP地址黑名单，直接阻断连接请求。</p>
+</li>
+<li><p><strong>DNS污染和缓存污染</strong><br>GFW会对域名系统服务器的解析结果进行污染，使敏感域名无法正确解析到真实IP。它还会通过伪造DNS响应污染缓存，扩大污染范围。</p>
+</li>
+<li><p><strong>URL关键词过滤</strong><br>GFW对网络流量的URL进行内容检测，如包含敏感关键词则予以阻断连接。</p>
+</li>
+<li><p><strong>RST复位攻击</strong><br>GFW可发送TCP复位包，主动终止用户与网站间的连接会话。</p>
+</li>
+<li><p><strong>封锁加密通信协议</strong><br>GFW会封锁SSL&#x2F;TLS等加密协议通信，阻止内容绕过关键词检测。</p>
+</li>
+<li><p><strong>主动探测和阻断翻墙工具</strong><br>GFW也在不断升级算法，主动探测并阻断各种VPN、代理等“翻墙”工具。</p>
+</li>
+</ol>
+<p>除此之外，GFW还会通过监控主干网收集整个互联网的流量数据，以提高检测和阻断的精准度。可以说，GFW是目前世界上最先进、技术最复杂的网络审查系统。</p>
+<p><img src="/images/gfw.jpg" alt="GFW分布示意图"></p>
+<h2 id="二、绕过GFW的主要“翻墙”技术"><a href="#二、绕过GFW的主要“翻墙”技术" class="headerlink" title="二、绕过GFW的主要“翻墙”技术"></a>二、绕过GFW的主要“翻墙”技术</h2><p>为了绕过GFW的审查，用户可以使用多种翻墙技术，包括VPN、代理服务器、智能路由、点对点工具等。以下是这些技术的详细介绍：</p>
+<ol>
+<li><p><strong>VPN（虚拟私人网络）</strong></p>
+<ul>
+<li><strong>工作原理</strong>：VPN通过在用户设备和VPN服务器之间建立加密隧道，将所有互联网流量通过这条隧道传输。这样，用户的网络流量会先到达VPN服务器，再由服务器转发到目标网站，从而隐藏用户的真实IP地址和访问内容。</li>
+<li><strong>优点</strong>：加密流量、隐藏IP、提供一定的匿名性。</li>
+<li><strong>缺点</strong>：VPN服务器容易被GFW识别和封锁；部分VPN服务质量和安全性不高。</li>
+</ul>
+</li>
+<li><p><strong>Web代理</strong></p>
+<ul>
+<li><strong>工作原理</strong>：代理服务器充当中间人，用户通过代理服务器发送请求，代理服务器再将请求转发到目标网站，并将响应返回给用户。常见的代理类型有HTTP代理和SOCKS代理。</li>
+<li><strong>优点</strong>：设置简单、可以选择不同国家的代理服务器。</li>
+<li><strong>缺点</strong>：不提供加密，容易被监控和封锁；免费代理服务器通常不稳定且速度慢。</li>
+</ul>
+</li>
+<li><p><strong>智能路由</strong></p>
+<ul>
+<li><strong>工作原理</strong>：如Psiphon等工具利用加密隧道技术绕过GFW的阻断，自动选择未被封锁的通道进行数据传输。</li>
+<li><strong>优点</strong>：自动化程度高、用户友好。</li>
+<li><strong>缺点</strong>：速度可能较慢，可靠性取决于服务器资源。</li>
+</ul>
+</li>
+<li><p><strong>网络存储</strong></p>
+<ul>
+<li><strong>工作原理</strong>：利用云存储服务，将禁止信息存储在海外服务器上，并通过特殊方式访问和下载。</li>
+<li><strong>优点</strong>：绕过直接的连接封锁。</li>
+<li><strong>缺点</strong>：需要一定技术知识来设置和使用，依赖于云服务商的安全和隐私保障。</li>
+</ul>
+</li>
+<li><p><strong>点对点工具</strong></p>
+<ul>
+<li><strong>工作原理</strong>：Freegate、Lantern等工具利用P2P技术组建用户网络，相互中转数据实现“翻墙”。</li>
+<li><strong>优点</strong>：难以被完全封锁、分散性强。</li>
+<li><strong>缺点</strong>：可能存在安全和隐私风险，依赖用户节点的数量和质量。</li>
+</ul>
+</li>
+<li><p><strong>网络空间存储</strong></p>
+<ul>
+<li><strong>工作原理</strong>：Colahub等工具对抗审查算法，将目标资源编码存储在网络空间中访问。</li>
+<li><strong>优点</strong>：创新性高、隐蔽性强。</li>
+<li><strong>缺点</strong>：技术复杂度高，使用门槛较高。</li>
+</ul>
+</li>
+</ol>
+<p>不同技术在便捷性、质量、安全性、匿名程度等方面存在差异，需根据实际需求选择。付费的商业化服务质量通常较高。</p>
+<h3 id="为了方便大家理解我通过一个故事来向大家讲解：小明的秘密信使"><a href="#为了方便大家理解我通过一个故事来向大家讲解：小明的秘密信使" class="headerlink" title="为了方便大家理解我通过一个故事来向大家讲解：小明的秘密信使"></a>为了方便大家理解我通过一个故事来向大家讲解：小明的秘密信使</h3><p>在一个叫“防火村”的地方，村长设立了一个巨大的围墙（GFW），用来控制村民们的信息交流。小明是村里的一个年轻人，他喜欢了解外面的世界，但围墙阻挡了他和外界的联系。</p>
+<p>小明的朋友小红住在村外，他们经常通信，但围墙让他们的信件无法送达。村长的手下（GFW的各类技术）会检查每封信，看到有任何敏感信息就会拦下。</p>
+<h3 id="小明的困境"><a href="#小明的困境" class="headerlink" title="小明的困境"></a>小明的困境</h3><p>小明想了很多办法，比如用隐语写信，甚至让朋友们带信出村，但都被村长的手下识破了。后来，小明听说了一种叫做“秘密信使”（VPN）的方法，这种方法能够帮助他安全地把信件送到村外。</p>
+<h3 id="秘密信使（VPN）的工作原理"><a href="#秘密信使（VPN）的工作原理" class="headerlink" title="秘密信使（VPN）的工作原理"></a>秘密信使（VPN）的工作原理</h3><p><strong>信使的秘密通道</strong>：</p>
+<ol>
+<li><p><strong>加密信件</strong>：小明用特殊的密码（加密技术）把信件加密，只有他和小红能解开。即使村长的手下拦截了信件，他们也看不懂里面的内容。</p>
+</li>
+<li><p><strong>信使的秘密通道</strong>：小明找到了一条秘密的地下通道，这条通道直接通到村外，小明和小红都知道这个通道的入口和出口（VPN服务器）。小明把信件放入这个通道，信件会通过这条隐秘的路径安全到达村外的小红手中。</p>
+</li>
+</ol>
+<h3 id="小明的行动"><a href="#小明的行动" class="headerlink" title="小明的行动"></a>小明的行动</h3><ol>
+<li><p><strong>选择信使</strong>：小明选择了一个可靠的信使公司（选择一个可靠的VPN服务商），这个信使公司在村外有很多秘密通道的出口（VPN服务器）。</p>
+</li>
+<li><p><strong>建立通道</strong>：小明和信使公司约定好一个秘密通道的入口（建立VPN连接），每次小明把信件放入这个入口，信使公司就会通过加密通道把信件送到村外。</p>
+</li>
+<li><p><strong>发送信件</strong>：小明把加密后的信件放入通道，信使公司通过秘密通道把信件传到村外。村长的手下虽然知道有信件通过，但他们既看不懂信件的内容，也不知道信件的具体去向，因为所有信件都是通过加密的地下通道传输的。</p>
+</li>
+</ol>
+<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>村长的手下发现了有加密信件通过，但他们无法解密，也找不到秘密通道的具体路径（VPN隧道），于是他们无法阻止小明和小红的通信。</p>
+<p>通过这种方式，小明成功地绕过了围墙，继续和外界联系，获取更多的信息和知识。而秘密信使（VPN）则成为了小明对抗信息封锁的重要工具</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在网络审查日益严格的时代，“翻墙”技术为用户提供了获取开放信息的重要途径。尽管GFW的技术日趋复杂，但信息自由的追求促使技术社区不断创新，开发出更加隐蔽、高效的翻墙工具。翻墙技术不仅是技术的应用，更体现了对开放信息和个人隐私的重视。</p>
+<p>“翻墙”技术的发展展示了人们对自由获取信息的需求。无论是VPN、智能路由，还是P2P工具，每种技术的背后都有大量工程师和用户的智慧与努力。这种技术和精神上的探索，展现了现代科技在保障信息自由方面的重要作用。</p>
+<p>未来，随着技术的不断进步和信息流通的加深，翻墙技术将继续演变。虽然面临挑战，但每一次技术突破都代表着对信息自由的进一步探索。互联网作为全球信息交流的平台，其开放性和自由性将继续推动社会进步，确保信息的自由流通。</p>
+<h3 id="强调一下-请各位了解并遵守当地相关法律法规"><a href="#强调一下-请各位了解并遵守当地相关法律法规" class="headerlink" title="强调一下,请各位了解并遵守当地相关法律法规!!!"></a>强调一下,请各位了解并遵守当地相关法律法规!!!</h3><h2 id="此文章仅用于网络技术交流-无任何个人用意及不良引导"><a href="#此文章仅用于网络技术交流-无任何个人用意及不良引导" class="headerlink" title="此文章仅用于网络技术交流,无任何个人用意及不良引导"></a>此文章仅用于网络技术交流,无任何个人用意及不良引导</h2>
+  </div>
+</article>
+
+<div id="valine-comment"></div>
+
+
+
+<!-- 加载 Valine 脚本 -->
+<script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
+
+<!-- 初始化 Valine -->
+<script>
+var valine = new Valine({
+    el: '#valine-comment',
+    'appId': 'ldZ7GUJGyRY2rCvf8gpAkXvS-gzGzoHsz',
+    'appKey': 'CnALuVOiJH2QVfBxHPtaxo6f'
+});
+</script>
+
+      </div>
+      
+        <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/AhPasT/PasT.github.io">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%96%E6%9E%90%E2%80%9D%E7%BF%BB%E5%A2%99%E2%80%9D%E6%8A%80%E6%9C%AF%E5%8F%8A%E5%85%B6%E5%9C%A8%E7%BD%91%E7%BB%9C%E5%AE%A1%E6%9F%A5%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">剖析”翻墙”技术及其在网络审查环境下的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81GFW%E7%9A%84%E8%BF%90%E4%BD%9C%E8%83%8C%E6%99%AF%E4%B8%8E%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.</span> <span class="toc-text">一、GFW的运作背景与机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GFW%E7%9A%84%E8%83%8C%E6%99%AF"><span class="toc-number">1.1.1.</span> <span class="toc-text">GFW的背景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GFW%E7%9A%84%E8%BF%90%E4%BD%9C%E6%9C%BA%E5%88%B6"><span class="toc-number">1.1.2.</span> <span class="toc-text">GFW的运作机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E7%BB%95%E8%BF%87GFW%E7%9A%84%E4%B8%BB%E8%A6%81%E2%80%9C%E7%BF%BB%E5%A2%99%E2%80%9D%E6%8A%80%E6%9C%AF"><span class="toc-number">1.2.</span> <span class="toc-text">二、绕过GFW的主要“翻墙”技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BA%86%E6%96%B9%E4%BE%BF%E5%A4%A7%E5%AE%B6%E7%90%86%E8%A7%A3%E6%88%91%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E6%95%85%E4%BA%8B%E6%9D%A5%E5%90%91%E5%A4%A7%E5%AE%B6%E8%AE%B2%E8%A7%A3%EF%BC%9A%E5%B0%8F%E6%98%8E%E7%9A%84%E7%A7%98%E5%AF%86%E4%BF%A1%E4%BD%BF"><span class="toc-number">1.2.1.</span> <span class="toc-text">为了方便大家理解我通过一个故事来向大家讲解：小明的秘密信使</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E6%98%8E%E7%9A%84%E5%9B%B0%E5%A2%83"><span class="toc-number">1.2.2.</span> <span class="toc-text">小明的困境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A7%98%E5%AF%86%E4%BF%A1%E4%BD%BF%EF%BC%88VPN%EF%BC%89%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.3.</span> <span class="toc-text">秘密信使（VPN）的工作原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E6%98%8E%E7%9A%84%E8%A1%8C%E5%8A%A8"><span class="toc-number">1.2.4.</span> <span class="toc-text">小明的行动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%9C"><span class="toc-number">1.2.5.</span> <span class="toc-text">结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">1.3.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E8%B0%83%E4%B8%80%E4%B8%8B-%E8%AF%B7%E5%90%84%E4%BD%8D%E4%BA%86%E8%A7%A3%E5%B9%B6%E9%81%B5%E5%AE%88%E5%BD%93%E5%9C%B0%E7%9B%B8%E5%85%B3%E6%B3%95%E5%BE%8B%E6%B3%95%E8%A7%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">强调一下,请各位了解并遵守当地相关法律法规!!!</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A4%E6%96%87%E7%AB%A0%E4%BB%85%E7%94%A8%E4%BA%8E%E7%BD%91%E7%BB%9C%E6%8A%80%E6%9C%AF%E4%BA%A4%E6%B5%81-%E6%97%A0%E4%BB%BB%E4%BD%95%E4%B8%AA%E4%BA%BA%E7%94%A8%E6%84%8F%E5%8F%8A%E4%B8%8D%E8%89%AF%E5%BC%95%E5%AF%BC"><span class="toc-number">1.4.</span> <span class="toc-text">此文章仅用于网络技术交流,无任何个人用意及不良引导</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2024/05/26/fq/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2024/05/26/fq/&text=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2024/05/26/fq/&is_video=false&description=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络审查攻防之战,翻墙技术的全面解析&body=Check out this article: http://example.com/2024/05/26/fq/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2024/05/26/fq/&title=网络审查攻防之战,翻墙技术的全面解析"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2024/05/26/fq/&name=网络审查攻防之战,翻墙技术的全面解析&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+      <ul>
+        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
+        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
+        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
+        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+      
+      <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2024 PasT.
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a target="_blank" rel="noopener" href="https://github.com/AhPasT/PasT.github.io">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+      
+<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- Google Analytics -->
+
+<!-- Disqus Comments -->
+
+
+    </div>
+    <!-- 引入流星雨脚本 -->
+    <script src="/js/meteor.js"></script>
+    <script type="text/javascript" src="/js/canvas-nest.js"></script>
+</body>
+</html>
