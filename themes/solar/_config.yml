@@ -1,0 +1,98 @@
+nav:
+  Home: /
+  About: /about/
+  Writing: /archives/
+  Diary: /diary/
+  Projects: https://github.com/AhPasT/PasT.github.io
+
+projects_url: https://github.com/AhPasT/PasT.github.io
+
+customize:
+    gravatar:
+        email: 
+    logo:
+        enabled: true
+        width: 50
+        height: 50
+        url: /images/logo.png
+        gravatar: false
+    favicon: 
+      # eg. generate with http://realfavicongenerator.net/
+      desktop:
+        url: /images/favicon.ico
+        gravatar: true
+      android:
+        url: /images/favicon-192x192.png
+        gravatar: true
+      apple:
+        url: /images/apple-touch-icon.png
+        gravatar: ture
+    social_links:
+        github: https://github.com/AhPasT
+        twitter: https://twitter.com/haosun63875958
+        facebook: https://www.facebook.com/ahxpast
+        linkedin: /
+    post_count: 5
+    highlight: lightcode
+
+# keept it like this to add the root path (probably a bug)
+root: ..
+
+solar:
+    # factor between 0 (fast), 1(normal), 2(very slow)  
+    speed: 1
+    sun_image: /images/sun.png
+    earth_image: /images/earth.png
+    jupiter_image: /images/jupiter.png
+    mars_image: /images/mars.png
+    mercury_image: /images/mercury.png
+    shadow_image: /images/shadow.png
+    venus_image: /images/venus.png
+
+# RSS
+rss: false
+
+# Plugins
+plugins:
+  - hexo-valine
+
+   
+ 
+   
+
+
+# Miscellaneous
+miscellaneous:
+    open_graph: # see http://ogp.me
+        fb_app_id:
+        fb_admins:
+        twitter_id:
+        google_plus:
+
+symbols_count_time:
+  symbols: true
+  time: true
+  total_symbols: true
+  total_time: true
+  exclude_codeblock: false
+  awl: 2    
+  wpm: 275
+  suffix: "mins."
+
+
+# Waline. 
+# You need deploy waline server in vercel then you can get serverURL
+# more info please open https://waline.js.org
+# Valine 评论模块的配置，默认为不激活，如要使用，就请激活该配置项，并设置 appId 和 appKey.
+valine:
+  enable: true
+  appid: ldZ7GUJGyRY2rCvf8gpAkXvS-gzGzoHsz
+  appkey: CnALuVOiJH2QVfBxHPtaxo6f
+  notify: true
+  verify: false# 验证码 默认为false
+  placeholder: 'PasT.因你而更加精彩'
+  avatar: monsterid # 头像风格，默认为mm，可进入网址：https://valine.js.org/visitor.html查看头像设置，这里有许多头像风格，进行设置
+  guest_info: nick,mail,link # 自定义评论标题
+  pageSize: 10 # 分页大小，10页就自动分页
+  visitor: true # 是否允许游客评论 ，进入官网查看设置：https://valine.js.org/visitor.html
+

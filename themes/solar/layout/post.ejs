@@ -1,0 +1,31 @@
+<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    <%- partial('_partial/post/title', { post: page, index: false, class_name: 'posttitle' }) %>
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name"><% if (page.author) { %><%- page.author %><% } else { %><%- config.title %><% } %></span>
+      </span>
+      <%- partial('_partial/post/date', { post: page, class_name: 'postdate' }) %>
+      <%- partial('_partial/post/tag') %>
+    </div>
+  </header>
+  <%- partial('_partial/post/gallery') %>
+  <div class="content" itemprop="articleBody">
+    <%- page.content %>
+  </div>
+</article>
+
+<div id="valine-comment"></div>
+<%- partial('_partial/comments') %>
+
+<!-- 加载 Valine 脚本 -->
+<script src="https://unpkg.com/valine/dist/Valine.min.js"></script>
+
+<!-- 初始化 Valine -->
+<script>
+var valine = new Valine({
+    el: '#valine-comment',
+    'appId': 'ldZ7GUJGyRY2rCvf8gpAkXvS-gzGzoHsz',
+    'appKey': 'CnALuVOiJH2QVfBxHPtaxo6f'
+});
+</script>

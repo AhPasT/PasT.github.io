@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html<%= config.language ? " lang=" + config.language.substring(0, 2) : ""%>>
+<head>
+    <%- partial('_partial/head') %>
+    <!-- 引入流星雨样式 -->
+    <link rel="stylesheet" href="/css/meteor.css">
+</head>
+<body>
+    <%- partial('_partial/banner') %>
+    <!-- 流星雨背景容器 -->
+    <div id="starfield"></div>
+    <div class="background">
+      <% if (is_post()) { %>
+        <%- partial('_partial/post/actions_desktop') %>
+      <% } %>
+      <div class="content index width mx-auto px2 my4">
+          <% if (!is_post()) { %>
+            <%- partial('_partial/header') %>
+          <% } %>
+          <%- body %>
+      </div>
+      <% if (is_post()) { %>
+        <%- partial('_partial/post/actions_mobile') %>
+      <% } %>
+      <%- partial('_partial/footer') %>
+      <%- partial('_partial/scripts') %>
+    </div>
+    <!-- 引入流星雨脚本 -->
+    <script src="/js/meteor.js"></script>
+    <script type="text/javascript" src="/js/canvas-nest.js"></script>
+</body>
+</html>

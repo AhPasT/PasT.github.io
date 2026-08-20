@@ -1,0 +1,20 @@
+<article class="post">
+  <div class="content" itemprop="articleBody">
+    <% if (page.type === 'diary') { %>
+      <h1>随笔日记</h1>
+      <ul class="diary-list">
+        <% page.entries.forEach(function(entry) { %>
+          <li class="diary-item">
+            <span class="diary-date"><%= entry.date.format('YYYY-MM-DD') %></span>
+            <a href="<%- url_for('/diary/' + entry.slug + '/') %>"><%= entry.title %></a>
+          </li>
+        <% }); %>
+      </ul>
+    <% } else if (page.type === 'diary-post') { %>
+      <h1><%= page.entry.title %></h1>
+      <span class="diary-date"><%= page.entry.date.format('YYYY-MM-DD') %></span>
+      <%- markdown(page.entry.content) %>
+      <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
+    <% } %>
+  </div>
+</article>

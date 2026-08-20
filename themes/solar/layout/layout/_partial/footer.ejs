@@ -1,0 +1,27 @@
+<footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; <%= new Date().getFullYear() %> <%= config.author || config.title %>
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+        <% for (var i in theme.nav) { %> 
+          <li><a href="<%- url_for(theme.nav[i]) %>"><%= i %></a></li>
+        <% } %>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<!-- Valine comments -->
+<div id="valine-comments"></div>
+
+<!-- Valine initialization script -->
+<script src="//cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: '#valine-comments',
+    appId: 'ldZ7GUJGyRY2rCvf8gpAkXvS-gzGzoHsz',
+    appKey: 'CnALuVOiJH2QVfBxHPtaxo6f',
+  });
+</script>
