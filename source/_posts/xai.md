@@ -1,6 +1,6 @@
 ---
 title: xAI大模型Grok-1使用和下载指南
-date: 2024-03-21
+date: 2024-03-21T00:00:00Z
 categories:
   - 科技
   - 社会

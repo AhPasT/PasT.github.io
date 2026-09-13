@@ -1,6 +1,6 @@
 ---
 title: chatGPT免费使用项目
-date: 2024-03-03
+date: 2024-03-03T00:00:00Z
 ---
 
 ### 免费ChatGPT接口分享
