@@ -66,7 +66,90 @@
 
     gtag('config', 'G-3537B4HZEB');
   </script>
-<meta name="generator" content="Hexo 7.0.0"></head>
+<meta name="generator" content="Hexo 7.0.0">
+<style id="update-notice-style">
+/* 首页更新提示横条（由 scripts/update-notice.js 注入，不占用主题样式文件） */
+.content .update-notice {
+  margin: 1.4em 0 1.8em;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+.content .update-notice-link {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  padding: 0.5em 0.8em;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 2px solid #d41c46;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.025);
+  background-image: none;
+  color: #8b8c8e;
+  text-decoration: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.content .update-notice-link:hover,
+.content .update-notice-link:focus {
+  background-color: rgba(255, 255, 255, 0.05);
+  background-image: none;
+  border-color: rgba(255, 255, 255, 0.13);
+  border-left-color: #d41c46;
+  color: #b9babc;
+}
+.update-notice-badge {
+  flex: 0 0 auto;
+  padding: 0 0.45em;
+  border: 1px solid rgba(212, 28, 70, 0.45);
+  border-radius: 3px;
+  color: #d41c46;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+.update-notice-section {
+  flex: 0 0 auto;
+  color: #5bac4a;
+  letter-spacing: 0.04em;
+}
+.update-notice-sep {
+  flex: 0 0 auto;
+  color: #555759;
+}
+.update-notice-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: #d8d9da;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.update-notice-date {
+  flex: 0 0 auto;
+  margin-left: auto;
+  padding-left: 0.6em;
+  color: #6d6e70;
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 480px) {
+  .content .update-notice {
+    margin: 1em 0 1.3em;
+    font-size: 0.76rem;
+  }
+  .content .update-notice-link {
+    gap: 0.35em;
+    padding: 0.45em 0.6em;
+  }
+  .update-notice-badge {
+    font-size: 0.68rem;
+  }
+  .update-notice-date {
+    margin-left: 0;
+    padding-left: 0.35em;
+  }
+}
+</style>
+</head>
 
     <!-- 引入流星雨样式 -->
     <link rel="stylesheet" href="/css/meteor.css">
@@ -161,6 +244,15 @@
   </p>
 </section>
 
+<aside class="update-notice" role="note" aria-label="最近更新">
+    <a class="update-notice-link" href="/diary/2026-09-15-%E7%BB%99%E4%BB%A5%E5%90%8E%E7%95%99%E4%B8%80%E6%9C%AC%E6%97%A5%E5%BF%97/">
+      <span class="update-notice-badge">更新</span>
+      <span class="update-notice-section">Diary</span>
+      <span class="update-notice-sep">·</span>
+      <span class="update-notice-title">《给以后留一本日志》</span>
+      <time class="update-notice-date" datetime="2026-09-15">2026-09-15</time>
+    </a>
+</aside>
 <section id="writing">
   <span class="h1"><a href="/archives">Writing</a></span>
   <ul class="post-list">
