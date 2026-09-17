@@ -1187,6 +1187,13 @@ article .content .caption {
 .diary-item a:hover {
   text-decoration: underline;
 }
+.diary-post .content blockquote {
+  border-left: 3px solid #5bac4a;
+  padding-left: 0.9em;
+}
+.diary-post .content blockquote p + p {
+  margin-top: 1em;
+}
 .blog-post-comments {
   margin-top: 4rem;
 }
