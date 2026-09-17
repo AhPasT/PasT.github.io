@@ -21,3 +21,13 @@
   text-decoration: none
   &:hover
     text-decoration: underline
+
+// 日记正文中的转载引用块：与正文形成明显的视觉区分
+.diary-post
+  .content
+    blockquote
+      border-left: 3px solid $color-accent
+      padding-left: 0.9em
+      p
+        & + p
+          margin-top: 1em
