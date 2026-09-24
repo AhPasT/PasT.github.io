@@ -14,7 +14,7 @@
       <h1><%= page.entry.title %></h1>
       <span class="diary-date"><%= page.entry.date.format('YYYY-MM-DD') %></span>
       <%- markdown(page.entry.content) %>
-      <% if (page.entry.slug.indexOf('2026-09-20') === 0) { %>
+      <% if (page.entry.slug === '2026-09-20-雨') { %>
       <!-- 稀疏细雨前端动效：仅本篇日记页面加载 -->
       <script src="/js/diary-rain.js"></script>
       <% } %>
