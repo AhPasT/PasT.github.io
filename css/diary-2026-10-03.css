@@ -105,3 +105,42 @@
   box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
   margin: 1.4em auto;
 }
+
+
+/* 收尾主题句：居中金色题句 + 上下细线 + 菱形落点，作为全篇收束 */
+.diary-post .content .closing {
+  margin: 2.8em 0 1.2em;
+  padding: 1.6em 1.1em 1.5em;
+  text-align: center;
+  border-radius: 8px;
+  border-top: 1px solid rgba(255, 214, 102, 0.22);
+  border-bottom: 1px solid rgba(255, 214, 102, 0.22);
+  background: radial-gradient(120% 150% at 50% 0%, rgba(255, 214, 102, 0.10), rgba(255, 255, 255, 0.02) 62%, transparent 100%);
+}
+.diary-post .content .closing .closing-text {
+  margin: 0;
+  font-size: 1.08em;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-indent: 0.16em;
+  color: #ffe6a0;
+  text-shadow: 0 0 16px rgba(255, 214, 102, 0.28);
+}
+.diary-post .content .closing .closing-text:before {
+  content: "";
+  display: block;
+  width: 2.2em;
+  height: 2px;
+  margin: 0 auto 1em;
+  background: linear-gradient(90deg, transparent, rgba(255, 214, 102, 0.85), transparent);
+}
+.diary-post .content .closing .closing-text:after {
+  content: "";
+  display: block;
+  width: 0.45em;
+  height: 0.45em;
+  margin: 1em auto 0;
+  background: #5bac4a;
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
