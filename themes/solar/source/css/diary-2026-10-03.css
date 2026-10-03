@@ -1,0 +1,107 @@
+/* 2026-10-03 日记专属排版：开篇随笔卡片 / 小节标题 / 对话体说话人 / 金句高亮 / 实况照片
+   仅本篇日记页面加载（diary.ejs 中按 slug 条件引入），不作用于其他日记与页面。 */
+
+/* 开篇随笔：轻微卡片化，与后文摘录拉开层次 */
+.diary-post .content p.lead {
+  color: #ced0d2;
+  line-height: 2.05;
+  background: rgba(255, 255, 255, 0.035);
+  border-left: 3px solid rgba(91, 172, 74, 0.55);
+  border-radius: 0 6px 6px 0;
+  padding: 1em 1.15em;
+  margin: 0 0 1.8em;
+}
+
+/* 摘录大标题：左侧色条 + 去掉主题默认的 "#" 装饰 */
+.diary-post .content h2.post-subtitle {
+  font-size: 1.12em;
+  letter-spacing: 0.02em;
+  color: #ececec;
+  margin: 2.4em 0 0.9em;
+  padding: 0.15em 0 0.15em 0.75em;
+  border-left: 4px solid #5bac4a;
+}
+.diary-post .content h2.post-subtitle:before { content: none; }
+
+/* 来源注记 */
+.diary-post .content .meta {
+  display: block;
+  color: #8b8e92;
+  font-size: 0.82em;
+  line-height: 1.7;
+  margin: 0 0 2em;
+}
+
+/* 小节标题（一 / 二 / 三）：绿色方形标记，不加任何字符 */
+.diary-post .content h3.sec {
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #a6dd93;
+  margin: 2.2em 0 0.7em;
+}
+.diary-post .content h3.sec:before {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  margin-right: 0.55em;
+  background: #5bac4a;
+  border-radius: 2px;
+  transform: rotate(45deg) translateY(-0.08em);
+}
+
+/* 说话人：圆点 + 配色，蔡康永=青蓝，罗永浩=暖橙 */
+.diary-post .content p.spk {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.95em;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin: 1.9em 0 0.5em;
+}
+.diary-post .content p.spk:before {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 7px currentColor;
+  flex: 0 0 auto;
+}
+.diary-post .content p.spk.k { color: #6fd0ff; }
+.diary-post .content p.spk.l { color: #ffab6b; }
+
+/* 对话正文：左侧细分隔线，按说话人着色，用「谁在说」做纵向区隔 */
+.diary-post .content p.dlg {
+  margin: 0.55em 0;
+  padding: 0.1em 0 0.1em 0.9em;
+  border-left: 2px solid rgba(255, 255, 255, 0.07);
+}
+.diary-post .content p.dlg.k { border-left-color: rgba(111, 208, 255, 0.3); }
+.diary-post .content p.dlg.l { border-left-color: rgba(255, 171, 107, 0.3); }
+
+/* 金句高亮：暖金色文字 + 底部荧光描线 */
+.diary-post .content .hl {
+  color: #ffe6a0;
+  font-weight: 500;
+  padding: 0 0.08em;
+  background: linear-gradient(180deg, transparent 62%, rgba(255, 214, 102, 0.18) 62%);
+  border-bottom: 1px dashed rgba(255, 214, 102, 0.5);
+}
+
+/* 实况照片（视频形态）与静态图统一观感 */
+.diary-post .content .live-photo {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.4em auto;
+  border-radius: 6px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+}
+.diary-post .content p > img {
+  border-radius: 6px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+  margin: 1.4em auto;
+}
