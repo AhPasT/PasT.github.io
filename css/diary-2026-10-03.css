@@ -119,7 +119,16 @@
 }
 .diary-post .content .closing .closing-text {
   margin: 0;
+  /* 题句自身锁定居中：主题在 @media (min-width:480px) 下对全局 p 设了 text-align:justify，
+     仅靠父级 .closing 的居中会被直接覆写，导致 ≥480px（桌面/平板/手机横屏）时题句左对齐、
+     与上下居中的细线和菱形落点错位 */
+  text-align: center;
+  /* 极窄屏（折叠屏外屏 / 旧机型）按视口收缩字号，保证题句始终单行、不折行。
+     可用宽度 = 100vw - 段落左右留白(2×16.5px) - 题句块左右内边距(2×16.5px) = 100vw - 66px；
+     按最坏字形进距（CJK 全角 + 0.16em 字距 ≈ 1.324em/字，13 字）反推字号上限，
+     正常手机/平板/桌面尺寸仍被 1.08em 封顶，观感与原先一致 */
   font-size: 1.08em;
+  font-size: min(1.08em, calc((100vw - 66px) / 17.6));
   font-weight: 700;
   letter-spacing: 0.16em;
   text-indent: 0.16em;
