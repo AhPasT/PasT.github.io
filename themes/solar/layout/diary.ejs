@@ -28,6 +28,11 @@
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-05.css') %>">
       <script src="<%- url_for('/js/diary-live.js') %>"></script>
       <% } %>
+      <% if (page.entry.slug.indexOf('2026-10-06') === 0) { %>
+      <!-- 本篇日记专属：开篇随笔卡片 + 实况照片（jpg+mp4）渲染 -->
+      <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-06.css') %>">
+      <script src="<%- url_for('/js/diary-live.js') %>"></script>
+      <% } %>
       <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
     <% } %>
   </div>
