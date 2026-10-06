@@ -1,0 +1,30 @@
+/* 2026-10-06 日记专属排版：开篇随笔卡片 / 实况照片（视频形态）
+   仅本篇日记页面加载（diary.ejs 中按 slug 条件引入），不作用于其他日记与页面。 */
+
+/* 开篇随笔：轻微卡片化，与后文图片拉开层次（与 2026-10-03 / 2026-10-05 日记观感一致） */
+.diary-post .content p.lead {
+  color: #ced0d2;
+  line-height: 2.05;
+  background: rgba(255, 255, 255, 0.035);
+  border-left: 3px solid rgba(91, 172, 74, 0.55);
+  border-radius: 0 6px 6px 0;
+  padding: 1em 1.15em;
+  margin: 0 0 1.8em;
+}
+
+/* 静态配图与实况照片静帧统一观感：圆角 + 投影 + 居中 */
+.diary-post .content p > img {
+  border-radius: 6px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+  margin: 1.4em auto;
+}
+
+/* 实况照片（视频形态）：与静态图同宽同观感 */
+.diary-post .content .live-photo {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.4em auto;
+  border-radius: 6px;
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+}
