@@ -33,6 +33,10 @@
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-06.css') %>">
       <script src="<%- url_for('/js/diary-live.js') %>"></script>
       <% } %>
+      <% if (page.entry.slug.indexOf('2026-10-07') === 0) { %>
+      <!-- 本篇日记专属：深黑「平行轨道」排版（暗底纵深 / 青绿实线＋紫罗兰虚线双轨 / 菱形节点 / 岔口斜线 / 琥珀收束句） -->
+      <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-07.css') %>">
+      <% } %>
       <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
     <% } %>
   </div>
