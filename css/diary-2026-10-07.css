@@ -1,0 +1,447 @@
+/* ==========================================================================
+   2026-10-07 日记专属样式：深黑「平行轨道」主题
+   设计意图：
+     - 暗底深色画布（#04060b ~ #0a0d15），多层径向渐变 + 边缘暗角堆出纵深；
+     - 背景铺设多组不同角度的斜向轨道线并缓慢平移，形成「多重人生交错」；
+     - 正文两条轨道并行错位：已走之路（青绿实线 + 发光实心节点）、
+       未选之路（紫罗兰虚线 + 空心节点，整体右移），岔口用斜向连线接上；
+     - 标题用多层错位投影做「叠印」，日期等宽小字拉开间距；
+     - 收束句改暖琥珀色，斜向光刃 + 菱形落点，打破居中虚线框。
+   仅在本篇日记页面加载（diary.ejs 中按 slug 前缀 2026-10-07 条件引入），
+   不影响其他日记与站点其他页面。
+   ========================================================================== */
+
+/* ---------- 0. 页面底色：把整页压进深空 ---------- */
+body {
+  background-color: #04060b;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(78% 58% at 50% -8%, rgba(79, 209, 197, 0.07), transparent 62%),
+    radial-gradient(66% 46% at 92% 104%, rgba(140, 124, 255, 0.07), transparent 62%);
+}
+
+/* ---------- 1. 深色画布：非对称切角 + 边缘暗角，不是规整卡片 ---------- */
+.diary-post {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 2px 36px 2px 36px;
+  padding: 3.6rem 3.4rem 3.6rem 4.6rem;
+  background-image:
+    radial-gradient(118% 76% at 88% -14%, rgba(79, 209, 197, 0.14), transparent 60%),
+    radial-gradient(96% 74% at -8% 106%, rgba(140, 124, 255, 0.15), transparent 62%),
+    radial-gradient(70% 52% at 46% 50%, rgba(26, 36, 60, 0.6), transparent 72%),
+    radial-gradient(120% 92% at 50% 46%, rgba(0, 0, 0, 0) 34%, rgba(0, 0, 0, 0.62) 100%),
+    linear-gradient(166deg, #0a0d15 0%, #070911 46%, #04060b 100%);
+  background-color: #05070c;
+  color: #c6ccd8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  box-shadow:
+    0 0 0 1px rgba(150, 175, 220, 0.09),
+    0 36px 84px -24px rgba(0, 0, 0, 0.94);
+}
+
+.diary-post .content {
+  color: #c6ccd8;
+}
+
+/* ---------- 2. 背景轨道层：多角度斜线交错 + 光带 + 缓慢平移 ---------- */
+.diary-post::before {
+  content: "";
+  position: absolute;
+  inset: -25% -12%;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(104deg, transparent 20%, rgba(150, 200, 255, 0.05) 36%, transparent 50%),
+    repeating-linear-gradient(74deg, rgba(150, 190, 255, 0.07) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(88deg, rgba(79, 209, 197, 0.075) 0 1px, transparent 1px 148px),
+    repeating-linear-gradient(101deg, rgba(140, 124, 255, 0.065) 0 1px, transparent 1px 189px),
+    repeating-linear-gradient(66deg, rgba(210, 226, 255, 0.035) 0 1px, transparent 1px 251px);
+  -webkit-mask-image: radial-gradient(88% 78% at 50% 42%, #000 24%, rgba(0, 0, 0, 0.35) 66%, transparent 100%);
+  mask-image: radial-gradient(88% 78% at 50% 42%, #000 24%, rgba(0, 0, 0, 0.35) 66%, transparent 100%);
+  animation: diary1007-drift 72s linear infinite;
+}
+
+@keyframes diary1007-drift {
+  from { transform: translate3d(0, 0, 0) rotate(-0.5deg); }
+  to   { transform: translate3d(-96px, 0, 0) rotate(-0.5deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diary-post::before {
+    animation: none;
+  }
+}
+
+/* 右上角青绿纵深光斑 */
+.diary-post::after {
+  content: "";
+  position: absolute;
+  top: -6%;
+  right: -14%;
+  width: 62%;
+  height: 46%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(closest-side, rgba(79, 209, 197, 0.16), rgba(79, 209, 197, 0));
+  filter: blur(6px);
+}
+
+/* ---------- 3. 标题区：左对齐 + 叠印错位 + 斜向光痕 ---------- */
+.diary-post .content h1 {
+  position: relative;
+  text-align: left;
+  max-width: 17em;
+  margin: 0 0 0.62em;
+  color: #edf1f8;
+  font-size: 1.9em;
+  font-weight: 800;
+  line-height: 1.36;
+  letter-spacing: 0.012em;
+  text-shadow:
+    0 0 42px rgba(120, 205, 255, 0.22),
+    4px 3px 0 rgba(79, 209, 197, 0.16),
+    -4px -3px 0 rgba(140, 124, 255, 0.16);
+}
+
+.diary-post .content h1::before {
+  content: "";
+  display: block;
+  width: 3em;
+  height: 1px;
+  margin: 0 0 1.5em;
+  background: linear-gradient(90deg, rgba(79, 209, 197, 0.95), rgba(140, 124, 255, 0.35) 72%, transparent);
+  box-shadow: 0 0 14px rgba(79, 209, 197, 0.55);
+  transform: rotate(-22deg);
+  transform-origin: left center;
+}
+
+.diary-post .content .diary-date {
+  display: inline-block;
+  margin: 0 0 3.4em;
+  color: #5f6b7d;
+  font-family: ui-monospace, Consolas, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.72em;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+}
+
+.diary-post .content .diary-date::after {
+  content: "";
+  display: inline-block;
+  width: 5em;
+  height: 1px;
+  margin-left: 1.2em;
+  vertical-align: middle;
+  background: linear-gradient(90deg, rgba(140, 124, 255, 0.55), transparent);
+}
+
+/* ---------- 4. 开篇设问：斜切错位的深色块，不再居中虚线框 ---------- */
+.diary-post .content p.lead {
+  position: relative;
+  margin: 0 0 3.4em;
+  padding: 1.5em 1.6em 1.5em 2.2em;
+  text-align: left;
+  font-size: 1.06em;
+  font-weight: 600;
+  line-height: 2.1;
+  letter-spacing: 0.01em;
+  color: #dbe3f0;
+  background: linear-gradient(112deg,
+    rgba(79, 209, 197, 0.09),
+    rgba(140, 124, 255, 0.05) 48%,
+    rgba(255, 255, 255, 0.012));
+  border: 0;
+  border-left: 2px solid rgba(79, 209, 197, 0.6);
+  border-radius: 0 22px 0 22px;
+  box-shadow: -18px 24px 48px -28px rgba(0, 0, 0, 0.9);
+  transform: translateX(-0.6em) skewX(-0.6deg);
+}
+
+.diary-post .content p.lead::before {
+  content: "";
+  position: absolute;
+  left: -0.62em;
+  top: 1.45em;
+  width: 6px;
+  height: 6px;
+  background: #4fd1c5;
+  box-shadow: 0 0 14px rgba(79, 209, 197, 0.9);
+  transform: rotate(45deg);
+}
+
+/* ---------- 5. 正文：两条平行轨道错位并行 ---------- */
+.diary-post .content .path {
+  position: relative;
+  padding-left: 30px;
+}
+
+.diary-post .content .path p {
+  position: relative;
+  margin: 0 0 1.62em;
+  line-height: 2.05;
+  letter-spacing: 0.012em;
+  color: #b9c1cf;
+}
+
+.diary-post .content .path p:last-child {
+  margin-bottom: 0;
+}
+
+/* 站点节点：菱形 */
+.diary-post .content .path p::before {
+  content: "";
+  position: absolute;
+  left: -26px;
+  top: 0.72em;
+  width: 7px;
+  height: 7px;
+  box-sizing: border-box;
+  transform: rotate(45deg);
+}
+
+/* 已走之路：青绿纵向实线 + 发光实心节点 + 侧向纵深底纹 */
+.diary-post .content .path-solid::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 0.15em;
+  bottom: 0.2em;
+  width: 1px;
+  background: linear-gradient(180deg,
+    rgba(79, 209, 197, 0),
+    rgba(79, 209, 197, 0.8) 10%,
+    rgba(79, 209, 197, 0.8) 90%,
+    rgba(79, 209, 197, 0));
+  box-shadow: 0 0 10px rgba(79, 209, 197, 0.5);
+}
+
+.diary-post .content .path-solid::after {
+  content: "";
+  position: absolute;
+  left: -20px;
+  right: -12px;
+  top: -1.2em;
+  bottom: -1.2em;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(96deg, rgba(79, 209, 197, 0.055), rgba(79, 209, 197, 0) 60%);
+  border-radius: 0 26px 0 26px;
+}
+
+.diary-post .content .path-solid p::before {
+  background: #4fd1c5;
+  box-shadow: 0 0 12px rgba(79, 209, 197, 0.85);
+}
+
+/* 未选之路：整体右移错位，紫罗兰虚线 + 空心节点 */
+.diary-post .content .path-dashed {
+  margin-top: 2.6em;
+  margin-left: 34px;
+}
+
+.diary-post .content .path-dashed::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: -1.35em;
+  bottom: 0.2em;
+  width: 0;
+  border-left: 1px dashed rgba(140, 124, 255, 0.78);
+}
+
+.diary-post .content .path-dashed p::before {
+  background: transparent;
+  border: 1px solid rgba(140, 124, 255, 0.9);
+  box-shadow: 0 0 10px rgba(140, 124, 255, 0.45);
+}
+
+/* 岔口：一段斜向连线把两条轨道接上 */
+.diary-post .content .path-dashed::after {
+  content: "";
+  position: absolute;
+  left: -27px;
+  top: -2.8em;
+  width: 40px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(79, 209, 197, 0.4), rgba(140, 124, 255, 0.78));
+  transform: rotate(33deg);
+  transform-origin: left center;
+}
+
+/* ---------- 6. 收束句：暖琥珀斜向光刃 + 菱形落点 ---------- */
+.diary-post .content p.closing {
+  position: relative;
+  margin: 3.6em 0 0;
+  padding: 2.2em 0 0;
+  text-align: left;
+  font-size: 1.34em;
+  font-weight: 700;
+  line-height: 1.8;
+  letter-spacing: 0.3em;
+  color: #f2d3a3;
+  background: none;
+  border: 0;
+  text-shadow: 0 0 30px rgba(226, 165, 90, 0.35);
+}
+
+.diary-post .content p.closing::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 26%;
+  top: 0.4em;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(226, 165, 90, 0.85), rgba(226, 165, 90, 0.22) 42%, transparent);
+  box-shadow: 0 0 16px rgba(226, 165, 90, 0.45);
+  transform: rotate(-5deg);
+  transform-origin: left center;
+}
+
+.diary-post .content p.closing::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4em;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -1px;
+  background: #f0c07a;
+  box-shadow: 0 0 18px rgba(240, 192, 122, 0.95);
+  transform: rotate(45deg);
+}
+
+/* ---------- 7. 配图：偏右下错位，不再居中 ---------- */
+.diary-post .content p > img {
+  display: block;
+  width: 76%;
+  max-width: 520px;
+  height: auto;
+  margin: 3.4em 0 0 auto;
+  border: 1px solid rgba(160, 185, 225, 0.26);
+  border-radius: 2px 20px 2px 20px;
+  background: #05070c;
+  box-shadow:
+    -26px 30px 64px -26px rgba(0, 0, 0, 0.95),
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 0 46px rgba(79, 209, 197, 0.14);
+  transform: rotate(0.5deg);
+}
+
+/* ---------- 8. 片尾视频：满宽内嵌 + 外扩细描边，收在最后 ---------- */
+.diary-post .content .diary-video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 3.6em auto 0;
+  border: 1px solid rgba(160, 185, 225, 0.16);
+  border-radius: 3px 24px 3px 24px;
+  background: #04060b;
+  outline: 1px solid rgba(150, 185, 235, 0.16);
+  outline-offset: 6px;
+  box-shadow:
+    0 34px 74px -28px rgba(0, 0, 0, 0.95),
+    0 0 54px rgba(140, 124, 255, 0.1);
+}
+
+/* ---------- 9. 说明文字与返回链接 ---------- */
+.diary-post .content > p > em {
+  color: #78849a;
+  font-size: 0.82em;
+  font-style: normal;
+  letter-spacing: 0.06em;
+}
+
+.diary-post .content > p > a {
+  color: #7fe3d8;
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(127, 227, 216, 0.5);
+}
+
+.diary-post .content > p > a:hover {
+  border-bottom-style: solid;
+}
+
+.diary-post ::selection {
+  background: rgba(79, 209, 197, 0.3);
+  color: #eef4ff;
+}
+
+/* ---------- 10. 窄屏适配 ---------- */
+@media (max-width: 600px) {
+  .diary-post {
+    padding: 2.4rem 1.35rem 2.6rem 2.1rem;
+    border-radius: 2px 24px 2px 24px;
+  }
+
+  .diary-post .content h1 {
+    font-size: 1.42em;
+  }
+
+  .diary-post .content .diary-date {
+    margin-bottom: 2.6em;
+    letter-spacing: 0.3em;
+  }
+
+  .diary-post .content p.lead {
+    padding: 1.2em 1.1em 1.2em 1.6em;
+    font-size: 1em;
+    transform: translateX(0) skewX(-0.4deg);
+  }
+
+  .diary-post .content .path {
+    padding-left: 24px;
+  }
+
+  .diary-post .content .path p::before {
+    left: -21px;
+    width: 6px;
+    height: 6px;
+  }
+
+  .diary-post .content .path-solid::before {
+    left: 6px;
+  }
+
+  .diary-post .content .path-solid::after {
+    left: -16px;
+    right: -10px;
+  }
+
+  .diary-post .content .path-dashed {
+    margin-left: 20px;
+  }
+
+  .diary-post .content .path-dashed::before {
+    left: 6px;
+  }
+
+  .diary-post .content .path-dashed::after {
+    left: -14px;
+    top: -2.9em;
+    width: 31px;
+    transform: rotate(50deg);
+  }
+
+  .diary-post .content p.closing {
+    font-size: 1.2em;
+    letter-spacing: 0.12em;
+  }
+
+  .diary-post .content p > img {
+    width: 100%;
+    max-width: 100%;
+    margin: 2.6em 0 0;
+    transform: none;
+  }
+}
