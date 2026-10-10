@@ -1,0 +1,300 @@
+/* ==========================================================================
+   2026-10-10 日记《小雪》专属样式：深夜失眠 · 时间递进 · 悲伤
+   设计意图：
+     - 全页压进深夜宿舍的墨蓝色（#04060d），一层很淡的床头灯暖光 + 尘埃浮动；
+     - 正文冷静克制，长段落弱对比排布；开篇铅字块带血丝般的暗红细边；
+     - 凌晨一点 → 五点半的时间轴：左侧夜轨细线贯穿，四个节点逐级增亮，
+       天光在「凌晨五点半 / 天亮了」处微微泛暖；
+     - 配图分三段：01 单张手机画面居中；02-04 三张散落卡片（轻微旋转交错）；
+       05 结尾宽幅留白收束；
+     - 结尾句灰淡克制的独行，末尾留大段静默。
+   仅在本篇日记页面加载（diary.ejs 中按 slug 前缀 2026-10-10 条件引入），
+   不影响其他日记与站点其他页面。
+   ========================================================================== */
+
+/* ---------- 0. 页面底色：深夜宿舍 ---------- */
+body {
+  background-color: #04060d;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 42% at 50% -6%, rgba(126, 158, 214, 0.06), transparent 64%),
+    radial-gradient(44% 34% at 8% 98%, rgba(255, 194, 130, 0.045), transparent 60%);
+}
+
+/* ---------- 1. 深色画布：不算规整的暗卡，顶部一抹灯晕 ---------- */
+.diary-post {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: 3px 34px 3px 34px;
+  padding: 4.2rem 3.6rem 4.6rem 4.2rem;
+  background-image:
+    radial-gradient(96% 62% at 50% -12%, rgba(148, 176, 224, 0.09), transparent 58%),
+    radial-gradient(74% 56% at 104% 100%, rgba(255, 184, 120, 0.05), transparent 58%),
+    radial-gradient(110% 88% at 50% 46%, rgba(16, 24, 42, 0.75), transparent 78%),
+    radial-gradient(120% 92% at 50% 46%, rgba(0, 0, 0, 0) 36%, rgba(0, 0, 0, 0.66) 100%),
+    linear-gradient(176deg, #080d18 0%, #060a13 48%, #04060d 100%);
+  background-color: #050811;
+  color: #b7becb;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  box-shadow:
+    0 0 0 1px rgba(150, 175, 220, 0.08),
+    0 40px 90px -26px rgba(0, 0, 0, 0.95);
+}
+
+.diary-post .content {
+  color: #b7becb;
+}
+
+/* 极淡的尘埃/夜光颗粒，缓缓漂浮（克制） */
+.diary-post::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 12% 18%, rgba(220, 232, 255, 0.4), transparent 60%),
+    radial-gradient(1px 1px at 38% 34%, rgba(220, 232, 255, 0.3), transparent 60%),
+    radial-gradient(1.5px 1.5px at 66% 22%, rgba(220, 232, 255, 0.28), transparent 60%),
+    radial-gradient(1px 1px at 84% 44%, rgba(220, 232, 255, 0.32), transparent 60%),
+    radial-gradient(1.5px 1.5px at 22% 62%, rgba(220, 232, 255, 0.24), transparent 60%),
+    radial-gradient(1px 1px at 52% 76%, rgba(220, 232, 255, 0.22), transparent 60%),
+    radial-gradient(1px 1px at 74% 84%, rgba(220, 232, 255, 0.2), transparent 60%);
+  animation: xue-dust 26s ease-in-out infinite alternate;
+}
+
+@keyframes xue-dust {
+  from { opacity: 0.35; transform: translate3d(0, 0, 0); }
+  to   { opacity: 0.9; transform: translate3d(-10px, -8px, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diary-post::before {
+    animation: none;
+  }
+}
+
+/* ---------- 2. 标题区：安静、疏淡 ---------- */
+.diary-post .content h1 {
+  position: relative;
+  text-align: left;
+  margin: 0 0 0.5em;
+  color: #e8ecf5;
+  font-size: 1.86em;
+  font-weight: 300;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  line-height: 1.5;
+  text-shadow: 0 0 34px rgba(170, 200, 255, 0.16);
+}
+
+.diary-post .content h1::after {
+  content: "";
+  display: block;
+  width: 3.2em;
+  height: 1px;
+  margin: 0.9em 0 0 0.34em;
+  background: linear-gradient(90deg, rgba(160, 184, 226, 0.55), transparent);
+}
+
+.diary-post .content .diary-date {
+  display: inline-block;
+  margin: 0 0 3.2em;
+  color: #46506a;
+  font-family: ui-monospace, Consolas, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.7em;
+  letter-spacing: 0.4em;
+  text-indent: 0.4em;
+}
+
+/* ---------- 3. 开篇：沉下去的铅字块 ---------- */
+.diary-post .content p.xue-lead {
+  margin: 0 0 3em;
+  padding: 1.4em 1.5em 1.4em 1.9em;
+  text-align: left;
+  line-height: 2.05;
+  font-weight: 500;
+  letter-spacing: 0.015em;
+  color: #cfd5e2;
+  background: linear-gradient(118deg, rgba(128, 152, 210, 0.07), rgba(255, 255, 255, 0.012) 62%);
+  border-left: 2px solid rgba(176, 96, 96, 0.42);
+  border-radius: 0 20px 0 20px;
+  box-shadow: -16px 22px 46px -30px rgba(0, 0, 0, 0.92);
+  transform: translateX(-0.35em);
+}
+
+/* ---------- 4. 正文段落：弱对比、安静 ---------- */
+.diary-post .content > p {
+  position: relative;
+  margin: 0 0 1.7em;
+  line-height: 2.06;
+  letter-spacing: 0.012em;
+  color: #aeb6c4;
+}
+
+.diary-post .content > p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- 5. 配图 ---------- */
+.xue-img {
+  margin: 2.6em 0 3em;
+}
+
+.xue-img img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.9);
+}
+
+/* 01 单张：睡前故事搜索画面，窄幅居中 */
+.img-single img {
+  width: min(58%, 320px);
+  margin: 0 auto;
+}
+
+/* 02-04 三张：散落的卡片，轻微旋转交错 */
+.img-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.img-trio img:nth-child(1) { transform: rotate(-1.6deg) translateY(4px); }
+.img-trio img:nth-child(2) { transform: rotate(0.8deg) translateY(-6px); }
+.img-trio img:nth-child(3) { transform: rotate(-0.9deg) translateY(6px); }
+
+.img-trio img {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 18px 36px -20px rgba(0, 0, 0, 0.92);
+}
+
+/* 05 结尾：宽幅留白 */
+.img-final {
+  margin: 3.4em auto 0;
+  max-width: 720px;
+}
+
+/* ---------- 6. 夜的时间轴：凌晨一点 → 五点半 ---------- */
+.diary-post .content .night {
+  position: relative;
+  margin: 0 0 2.1em;
+  padding: 0.2em 0 0.4em 1.55em;
+}
+
+/* 夜轨细线 */
+.diary-post .content .night::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.1em;
+  bottom: -0.1em;
+  width: 1px;
+  background: linear-gradient(180deg, rgba(96, 116, 158, 0.5), rgba(196, 202, 216, 0.28));
+}
+
+/* 时间节点 */
+.diary-post .content .night .tclock {
+  position: relative;
+  display: inline-block;
+  font-family: ui-monospace, Consolas, "SFMono-Regular", Menlo, monospace;
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  margin: 0 0.55em 0 0;
+  color: #5c6a86;
+  transition: color 0.4s ease;
+}
+
+.diary-post .content .night .tclock::before {
+  content: "";
+  position: absolute;
+  left: -1.58em;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 12px currentColor;
+  transform: translateY(-50%);
+}
+
+.diary-post .content .night p {
+  margin: 0 0 0.7em;
+  line-height: 2.02;
+  color: #a4adbd;
+}
+
+.diary-post .content .night p:last-child {
+  margin-bottom: 0;
+}
+
+/* 时间递进：节点逐级增亮（nth 按 DOM 顺序，图片在 night 之前不影响） */
+.diary-post .content .night-1 .tclock { color: #4d5a75; }
+.diary-post .content .night-2 .tclock { color: #5f6f90; }
+.diary-post .content .night-3 .tclock { color: #7a8aa9; }
+.diary-post .content .night-4 .tclock { color: #c7d2e4; }
+
+/* 凌晨五点半：天亮了，微暖 */
+.diary-post .content .night-4 {
+  padding-left: 1.9em;
+}
+
+.diary-post .content .night-4::after {
+  content: "";
+  position: absolute;
+  left: 0.35em;
+  right: -0.6em;
+  top: -0.9em;
+  bottom: -0.9em;
+  z-index: -1;
+  border-radius: 18px;
+  background: radial-gradient(64% 100% at 16% 50%, rgba(255, 190, 120, 0.055), transparent 70%);
+  pointer-events: none;
+}
+
+.diary-post .content .night-4 p {
+  color: #c2cad8;
+}
+
+.diary-post .content .night-4 p.dawn {
+  color: #e3d9c8;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+}
+
+/* ---------- 7. 结尾句：灰淡独行 ---------- */
+.diary-post .content p.xue-ending {
+  margin: 3.4em 0 0.4em;
+  text-align: center;
+  color: #7e8899;
+  font-size: 0.96em;
+  letter-spacing: 0.12em;
+  line-height: 2;
+  opacity: 0.85;
+}
+
+/* ---------- 8. 窄屏适配 ---------- */
+@media (max-width: 640px) {
+  .diary-post {
+    padding: 2.4rem 1.2rem 3rem 1.3rem;
+  }
+  .img-single img {
+    width: 72%;
+  }
+  .img-trio {
+    gap: 6px;
+  }
+}
