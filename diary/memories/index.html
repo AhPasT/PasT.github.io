@@ -177,13 +177,34 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:
   var TRACKS = ["assets/audio/%E5%A3%B0%E9%9F%B3%E7%8E%A9%E5%85%B7%20-%20%E4%BD%A0%E7%9A%84%E5%9F%8E%E5%B8%82.mp3", "assets/audio/Wolf%20Colony%20-%20Holy.mp3"];
   var bgm = new Audio();
   bgm.volume = 0.6;
-  bgm.preload = 'none';
+  bgm.preload = 'auto';
   var bgmIdx = 0;
   var bgmStarted = false;
-  bgm.src = TRACKS[0];
+  var blobUrls = [];
+  // 页面加载后尽早预取两首 MP3，缓存为 Blob，首次交互播放时优先用缓存数据
+  function prefetchBgm(){
+    TRACKS.forEach(function(url){
+      fetch(url).then(function(res){ return res.blob(); }).then(function(blob){
+        var u = URL.createObjectURL(blob);
+        blobUrls[TRACKS.indexOf(url)] = u;
+        if(bgm.src === TRACKS[0] && blobUrls[0]){
+          bgm.src = blobUrls[0];
+        }
+      }).catch(function(){});
+    });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', prefetchBgm);
+  }else{
+    prefetchBgm();
+  }
+  function trackSrc(i){
+    return blobUrls[i] ? blobUrls[i] : TRACKS[i];
+  }
+  bgm.src = trackSrc(0);
   bgm.addEventListener('ended', function(){
     bgmIdx = (bgmIdx + 1) % TRACKS.length;
-    bgm.src = TRACKS[bgmIdx];
+    bgm.src = trackSrc(bgmIdx);
     bgm.play().catch(function(){});
   });
   function startBgm(){
