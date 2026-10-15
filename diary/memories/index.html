@@ -173,15 +173,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:
     lbImg.src = '';
   });
 
-  // ---- 背景音乐：两首顺序循环、音量 0.6、首次交互后启动、极简静音入口 ----
-  var TRACKS = ["assets/audio/%E5%A3%B0%E9%9F%B3%E7%8E%A9%E5%85%B7%20-%20%E4%BD%A0%E7%9A%84%E5%9F%8E%E5%B8%82.mp3", "assets/audio/Wolf%20Colony%20-%20Holy.mp3"];
+  // ---- 背景音乐：三首顺序循环、音量 0.6、首次交互后启动、极简静音入口 ----
+  var TRACKS = ["assets/audio/%E5%A3%B0%E9%9F%B3%E7%8E%A9%E5%85%B7%20-%20%E4%BD%A0%E7%9A%84%E5%9F%8E%E5%B8%82.mp3", "assets/audio/Wolf%20Colony%20-%20Holy.mp3", "assets/audio/03.mp3"];
   var bgm = new Audio();
   bgm.volume = 0.6;
   bgm.preload = 'auto';
   var bgmIdx = 0;
   var bgmStarted = false;
   var blobUrls = [];
-  // 页面加载后尽早预取两首 MP3，缓存为 Blob，首次交互播放时优先用缓存数据
+  // 页面加载后尽早预取三首 MP3，缓存为 Blob，首次交互播放时优先用缓存数据
   function prefetchBgm(){
     TRACKS.forEach(function(url){
       fetch(url).then(function(res){ return res.blob(); }).then(function(blob){
