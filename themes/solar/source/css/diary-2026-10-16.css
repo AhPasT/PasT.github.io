@@ -1,0 +1,85 @@
+/* 2026-10-16 日记专属排版：「不服」红涨绿跌情绪排版
+   内容气质：股市 / 不服气。三段正文逐字照录，仅以红绿细节点缀情绪：
+   第一句「拿着也不是」= 横盘纠结（绿）→ 第二句「立马就拉」= 拉升（红）→
+   第三句「补仓不服」= 倔强重仓（红渐强）。正文无任何文字修饰。
+   仅本篇日记页面加载（diary.ejs 中按 slug 条件引入），不作用于其他日记与页面。 */
+
+/* 三段正文统一：无缩进、行距宽松，左侧红/绿细竖条点睛，不做文字改动 */
+.diary-post .content p.bf {
+  text-indent: 0;
+  line-height: 2.0;
+  letter-spacing: 0.02em;
+  padding: 0.55em 0 0.55em 1.05em;
+  margin: 1.15em 0;
+  border-left: 3px solid rgba(160, 170, 180, 0.35);
+  color: #e2e4e8;
+}
+
+/* 第一句：拿着也不是 —— 横盘纠结，绿（跌） */
+.diary-post .content p.bf-1 {
+  border-left-color: #3fb950;
+  color: #b9c9bd;
+}
+
+/* 第二句：阴跌后立马就拉 —— 绿转红（跌到拉涨的转折） */
+.diary-post .content p.bf-2 {
+  border-left-color: #f85149;
+  color: #e8c4c2;
+}
+
+/* 第三句：收益被吃仍补仓 —— 不服，红渐强（情绪最重） */
+.diary-post .content p.bf-3 {
+  border-left: 3px solid transparent;
+  border-image: linear-gradient(180deg, #f85149, #ff7b72) 1;
+  color: #f2d0cd;
+}
+
+/* 情绪渐变条：绿→红，呼应「阴跌一整天的收益 → 拉涨的倔强补仓」 */
+.diary-post .content .bf-strip {
+  position: relative;
+  height: 4px;
+  margin: 2.2em auto 2.4em;
+  width: min(78%, 420px);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3fb950 0%, #f85149 100%);
+}
+.diary-post .content .bf-strip .bf-dot {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: #0d1117;
+  border: 2px solid currentColor;
+}
+.diary-post .content .bf-strip .bf-dot-s {
+  left: 0;
+  color: #3fb950;
+}
+.diary-post .content .bf-strip .bf-dot-e {
+  right: 0;
+  color: #f85149;
+}
+
+/* 持仓截图：圆角 + 轻投影，首图淡绿边（阴跌起点）、末图淡红边（不服持仓） */
+.diary-post .content .bf-img {
+  margin: 1.15em 0;
+  text-align: center;
+}
+.diary-post .content .bf-img img {
+  max-width: min(100%, 640px);
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.38);
+  display: inline-block;
+  background: #0d1117;
+  padding: 4px;
+  box-sizing: border-box;
+}
+.diary-post .content .bf-img:first-of-type img {
+  outline: 1px solid rgba(63, 185, 80, 0.45);
+}
+.diary-post .content .bf-img:last-of-type img {
+  outline: 1px solid rgba(248, 81, 73, 0.55);
+}
