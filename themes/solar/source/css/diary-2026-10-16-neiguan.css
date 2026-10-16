@@ -1,0 +1,47 @@
+/* 2026-10-16 日记专属排版：「内观」烦躁吐槽 → 内观自省 转折排版
+   气质：吐槽段躁、刺眼（橙红亮色）；过渡段大留白+细线沉淀；
+   自省段安静、柔和（青灰冷色）。正文逐字照录，无任何文字修饰。
+   仅本篇日记页面加载（diary.ejs 中按 slug 精确匹配引入），不作用于其他日记与页面。 */
+
+/* 第一段：烦躁吐槽 —— 偏亮橙红，行距略紧带一点躁动 */
+.diary-post .content p.ng-1 {
+  text-indent: 0;
+  line-height: 1.95;
+  letter-spacing: 0.02em;
+  color: #f0b9ae;
+  padding: 0.7em 0 0.7em 1.1em;
+  margin: 1.4em 0 0.6em;
+  border-left: 3px solid #ff7b72;
+  background: linear-gradient(90deg, rgba(255, 123, 114, 0.06), transparent 60%);
+}
+
+/* 过渡：大留白 + 极细渐变线 + 中点，烦躁沉淀下来 */
+.diary-post .content .ng-divider {
+  position: relative;
+  height: 1px;
+  margin: 3.2em auto;
+  width: min(64%, 360px);
+  background: linear-gradient(90deg, rgba(255, 123, 114, 0.55), rgba(139, 157, 168, 0.25));
+}
+.diary-post .content .ng-divider .ng-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: #1a1f26;
+  border: 1px solid rgba(180, 200, 215, 0.55);
+}
+
+/* 第二段：内观自省 —— 青灰冷色、字距略宽、留白更足 */
+.diary-post .content p.ng-2 {
+  text-indent: 0;
+  line-height: 2.15;
+  letter-spacing: 0.05em;
+  color: #aebcc7;
+  padding: 0.9em 0 0.9em 1.3em;
+  margin: 1.6em 0 3em;
+  border-left: 2px solid rgba(139, 157, 168, 0.6);
+}

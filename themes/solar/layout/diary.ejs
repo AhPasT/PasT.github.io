@@ -41,9 +41,13 @@
       <!-- 本篇日记专属：《小雪》深夜失眠排版（墨蓝夜底 / 尘埃浮光 / 凌晨时间轴逐级增亮 / 三张散落卡片 / 结尾灰淡独行） -->
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-10.css') %>">
       <% } %>
-      <% if (page.entry.slug.indexOf('2026-10-16') === 0) { %>
+      <% if (page.entry.slug === '2026-10-16-不服') { %>
       <!-- 本篇日记专属：《不服》红涨绿跌情绪排版（三段正文绿→红竖条 / 情绪渐变条 / 持仓截图首绿末红描边） -->
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-16.css') %>">
+      <% } %>
+      <% if (page.entry.slug === '2026-10-16-内观') { %>
+      <!-- 本篇日记专属：《内观》烦躁→自省转折排版（吐槽段橙红 / 过渡细线 / 自省段青灰） -->
+      <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-16-neiguan.css') %>">
       <% } %>
       <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
     <% } %>
