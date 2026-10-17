@@ -1,0 +1,52 @@
+/* 2026-10-16 日记专属排版：「瞎子」主题纯黑沉浸排版
+   气质：沉溺于黑暗中，无拘自由洒脱。整页黑底、浅灰白诗行式排布、
+   大留白、极简克制。正文逐字照录，无任何文字修饰。
+   仅本篇日记页面加载（diary.ejs 中按 slug 精确匹配引入），不作用于其他日记与页面。 */
+
+/* 整页纯黑：覆盖主题默认暗底，沉浸「黑暗中」 */
+body {
+  background: #000 !important;
+}
+
+/* 页面标题与日期：柔和浅色，居中突出，克制 */
+.diary-post .content h1 {
+  color: #eceff1;
+  text-align: center;
+  font-size: 1.65em;
+  font-weight: 300;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  margin: 0.8em 0 0.2em;
+}
+.diary-post .content .diary-date {
+  display: block;
+  text-align: center;
+  color: #6b7074;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  margin-bottom: 2.2em;
+}
+
+/* 诗节：每节独立留白，营造呼吸感 */
+.diary-post .content .xz-stanza {
+  margin: 2.6em 0;
+}
+
+/* 诗行：居中、宽行距、浅灰白、字距舒展 */
+.diary-post .content p.xz-line {
+  text-align: center;
+  text-indent: 0;
+  line-height: 1.95;
+  letter-spacing: 0.09em;
+  color: #cfd3d6;
+  margin: 0.22em 0;
+}
+
+/* 首行「瞎子」：略大、更亮、字距更开，作为全诗基调 */
+.diary-post .content p.xz-title {
+  font-size: 1.45em;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  color: #f4f6f7;
+  margin: 0.6em 0 1.2em;
+}
