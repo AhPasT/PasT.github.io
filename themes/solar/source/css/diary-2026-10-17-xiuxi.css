@@ -1,0 +1,42 @@
+/* 《休息》松弛夜感专属排版：休盘小醉、收工睡觉的暗暖夜色 */
+.diary-post .content {
+  background: radial-gradient(ellipse at 50% 18%, rgba(214, 164, 106, 0.14) 0%, rgba(28, 23, 18, 0) 62%), #1c1712;
+  color: #d6c4a8;
+  padding: 9.5rem 1.8rem 11rem;
+  text-align: center;
+}
+
+.diary-post .content .xiuxi-title {
+  font-size: 2.6rem;
+  font-weight: 300;
+  letter-spacing: 0.9em;
+  text-indent: 0.9em;
+  color: #e2b87e;
+  margin: 0 0 5.5rem;
+  text-shadow: 0 0 26px rgba(232, 183, 122, 0.35), 0 0 60px rgba(232, 183, 122, 0.18);
+}
+
+.diary-post .content .xiuxi-line {
+  font-size: 1.12rem;
+  line-height: 2.15;
+  letter-spacing: 0.14em;
+  color: #cbb294;
+  margin: 0.7rem 0;
+}
+
+.diary-post .content .xiuxi-line:first-of-type {
+  opacity: 0.92;
+}
+
+.diary-post .content .xiuxi-line:last-of-type {
+  opacity: 0.78;
+}
+
+@media (max-width: 720px) {
+  .diary-post .content {
+    padding: 7rem 1.2rem 8.5rem;
+  }
+  .diary-post .content .xiuxi-title {
+    font-size: 2rem;
+  }
+}
