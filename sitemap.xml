@@ -65,7 +65,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/diary/2026-09-19-%E5%86%8D%E8%A7%81.html</loc>
+    <loc>http://example.com/diary/2026-09-18-%E9%82%A3%E5%9C%BA%E6%A2%A6%E8%BF%98%E5%9C%A8.html</loc>
     
     <lastmod>2026-10-17</lastmod>
     
@@ -83,7 +83,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/diary/2026-09-18-%E9%82%A3%E5%9C%BA%E6%A2%A6%E8%BF%98%E5%9C%A8.html</loc>
+    <loc>http://example.com/diary/2026-09-19-%E5%86%8D%E8%A7%81.html</loc>
     
     <lastmod>2026-10-17</lastmod>
     
@@ -200,7 +200,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/diary/2026-10-16-%E7%9E%8E%E5%AD%90.html</loc>
+    <loc>http://example.com/diary/2026-10-17-%E7%9E%8E%E5%AD%90.html</loc>
     
     <lastmod>2026-10-17</lastmod>
     
@@ -236,7 +236,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2025/02/19/deepseek/</loc>
+    <loc>http://example.com/2024/03/03/chatgpt/</loc>
     
     <lastmod>2026-10-17</lastmod>
     
@@ -245,7 +245,7 @@
   </url>
   
   <url>
-    <loc>http://example.com/2024/03/03/chatgpt/</loc>
+    <loc>http://example.com/2025/02/19/deepseek/</loc>
     
     <lastmod>2026-10-17</lastmod>
     
@@ -308,15 +308,6 @@
   </url>
   
   <url>
-    <loc>http://example.com/2024/02/05/qkl/</loc>
-    
-    <lastmod>2026-10-17</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>http://example.com/2024/12/11/ri/</loc>
     
     <lastmod>2026-10-17</lastmod>
@@ -336,6 +327,15 @@
   
   <url>
     <loc>http://example.com/2024/08/29/wukong/</loc>
+    
+    <lastmod>2026-10-17</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2024/02/05/qkl/</loc>
     
     <lastmod>2026-10-17</lastmod>
     
