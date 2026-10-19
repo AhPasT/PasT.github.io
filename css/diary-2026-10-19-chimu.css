@@ -70,6 +70,13 @@
   margin-top: 0;
 }
 
+/* 段落分组间距优先于普通行间距（更高特异性，确保 .cmu-block 的段落间距真实生效） */
+.diary-post .content .cmu-line.cmu-block,
+.diary-post .content .cmu-line + .cmu-line.cmu-block,
+.diary-post .content .cmu-body > .cmu-line.cmu-block {
+  margin-top: 2.2rem;
+}
+
 /* 段落间空行（md 空行转视觉间距）：用 .cmu-gap 不生成，靠分组判断——这里以 cmu-line 相邻间距统一，
    段落分隔通过 markdown 中空 <p> 不可行；改由分段样式区分：首行段落加 .cmu-block */
 
@@ -94,18 +101,20 @@
 .diary-post .content .cmu-rule::before { left: 0; }
 .diary-post .content .cmu-rule::after { right: 0; }
 
-/* 尾段独立区块：克制的细线 + 极浅灰层次过渡，柔和章节区隔（不深色反转、不硬色块） */
+/* 尾段独立区块：上下双线框定 + 加深灰阶层次，章节区隔明显但不生硬（保持黑白简约） */
 .diary-post .content .cmu-final {
-  margin-top: 3.6rem;
-  padding: 3.2rem 1.4rem 2.6rem;
-  border-top: 1px solid rgba(22, 22, 22, 0.14);
-  background: linear-gradient(180deg, rgba(22, 22, 22, 0.05) 0%, rgba(22, 22, 22, 0.02) 55%, rgba(22, 22, 22, 0) 100%);
-  color: #161616;
+  margin-top: 4.6rem;
+  padding: 4rem 1.6rem 3.2rem;
+  border-top: 2px solid rgba(22, 22, 22, 0.32);
+  border-bottom: 1px solid rgba(22, 22, 22, 0.16);
+  background: linear-gradient(180deg, rgba(22, 22, 22, 0.10) 0%, rgba(22, 22, 22, 0.05) 55%, rgba(22, 22, 22, 0.015) 100%);
+  color: #0f0f0f;
   border-radius: 0;
   box-shadow: none;
 }
 .diary-post .content .cmu-final .cmu-line {
-  color: #161616;
+  color: #0f0f0f;
+  font-weight: 500;
 }
 
 @media (max-width: 720px) {
@@ -124,7 +133,7 @@
     margin-bottom: 3.5rem;
   }
   .diary-post .content .cmu-final {
-    margin-top: 2.6rem;
-    padding: 2.6rem 1rem 2.1rem;
+    margin-top: 3.2rem;
+    padding: 3rem 1rem 2.4rem;
   }
 }
