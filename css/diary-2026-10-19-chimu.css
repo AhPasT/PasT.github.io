@@ -1,0 +1,128 @@
+/* 《迟暮》黑白简约高级感专属排版：极简杂志黑白灰层次 / 精细字距行距 / 克制的留白 / 尾段独立区块 */
+.diary-post .content {
+  background: linear-gradient(180deg, #f6f6f4 0%, #ffffff 26%, #f0f0ee 100%);
+  color: #161616;
+  padding: 8rem 1.8rem 9rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+.diary-post .content h1 {
+  font-size: 2.6rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  color: #101010;
+  margin: 0 0 1rem;
+  /* 克制的双影：极浅灰错位，呼应"迟暮"的余影 */
+  text-shadow:
+    1px 1px 0 rgba(0, 0, 0, 0.08),
+    -1px -1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.diary-post .content .diary-date {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  color: rgba(22, 22, 22, 0.34);
+  margin-bottom: 4.5rem;
+}
+
+/* 正文容器：精细字距与行距，克制留白 */
+.diary-post .content .cmu-body {
+  max-width: 26rem;
+  margin: 0 auto;
+  font-size: 1.02rem;
+  line-height: 1.9;
+  letter-spacing: 0.06em;
+  color: #222;
+}
+
+.diary-post .content .cmu-title {
+  font-size: 1.7rem;
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
+  color: #0f0f0f;
+  margin: 0 0 4.5rem;
+}
+
+.diary-post .content .cmu-line {
+  margin: 0;
+  padding: 0.18rem 0;
+}
+
+/* 段落分组：原文空行对应的视觉间距 */
+.diary-post .content .cmu-block {
+  margin-top: 2.2rem;
+}
+.diary-post .content .cmu-title + .cmu-block {
+  margin-top: 2.2rem;
+}
+
+/* 段落间距：原文空行对应 */
+.diary-post .content .cmu-line + .cmu-line {
+  margin-top: 0;
+}
+
+.diary-post .content .cmu-body > .cmu-line {
+  margin-top: 0;
+}
+
+/* 段落间空行（md 空行转视觉间距）：用 .cmu-gap 不生成，靠分组判断——这里以 cmu-line 相邻间距统一，
+   段落分隔通过 markdown 中空 <p> 不可行；改由分段样式区分：首行段落加 .cmu-block */
+
+/* 分隔线：低调细线 + 三破折号 */
+.diary-post .content .cmu-rule {
+  margin: 3.8rem 0 3.8rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.55em;
+  text-indent: 0.55em;
+  color: rgba(22, 22, 22, 0.42);
+  position: relative;
+}
+.diary-post .content .cmu-rule::before,
+.diary-post .content .cmu-rule::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 5.2rem;
+  height: 1px;
+  background: rgba(22, 22, 22, 0.24);
+}
+.diary-post .content .cmu-rule::before { left: 0; }
+.diary-post .content .cmu-rule::after { right: 0; }
+
+/* 尾段独立区块：灰阶反转，明显章节区隔 */
+.diary-post .content .cmu-final {
+  margin-top: 0;
+  padding: 2.6rem 1.4rem 2.4rem;
+  background: #1b1b1b;
+  color: #e6e6e2;
+  border-radius: 2px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10);
+}
+.diary-post .content .cmu-final .cmu-line {
+  color: #dcdcd8;
+}
+
+@media (max-width: 720px) {
+  .diary-post .content {
+    padding: 6rem 1.1rem 7.5rem;
+  }
+  .diary-post .content h1 {
+    font-size: 2rem;
+  }
+  .diary-post .content .cmu-body {
+    font-size: 0.98rem;
+    line-height: 1.85;
+  }
+  .diary-post .content .cmu-title {
+    font-size: 1.4rem;
+    margin-bottom: 3.5rem;
+  }
+  .diary-post .content .cmu-final {
+    padding: 2.1rem 1rem 1.9rem;
+  }
+}
