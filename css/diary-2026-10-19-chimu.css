@@ -94,17 +94,18 @@
 .diary-post .content .cmu-rule::before { left: 0; }
 .diary-post .content .cmu-rule::after { right: 0; }
 
-/* 尾段独立区块：灰阶反转，明显章节区隔 */
+/* 尾段独立区块：克制的细线 + 极浅灰层次过渡，柔和章节区隔（不深色反转、不硬色块） */
 .diary-post .content .cmu-final {
-  margin-top: 0;
-  padding: 2.6rem 1.4rem 2.4rem;
-  background: #1b1b1b;
-  color: #e6e6e2;
-  border-radius: 2px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.10);
+  margin-top: 3.6rem;
+  padding: 3.2rem 1.4rem 2.6rem;
+  border-top: 1px solid rgba(22, 22, 22, 0.14);
+  background: linear-gradient(180deg, rgba(22, 22, 22, 0.05) 0%, rgba(22, 22, 22, 0.02) 55%, rgba(22, 22, 22, 0) 100%);
+  color: #161616;
+  border-radius: 0;
+  box-shadow: none;
 }
 .diary-post .content .cmu-final .cmu-line {
-  color: #dcdcd8;
+  color: #161616;
 }
 
 @media (max-width: 720px) {
@@ -123,6 +124,7 @@
     margin-bottom: 3.5rem;
   }
   .diary-post .content .cmu-final {
-    padding: 2.1rem 1rem 1.9rem;
+    margin-top: 2.6rem;
+    padding: 2.6rem 1rem 2.1rem;
   }
 }
