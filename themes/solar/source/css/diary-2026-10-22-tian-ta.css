@@ -1,0 +1,109 @@
+/* 日记「一觉起来天塌了」专属排版：天塌断崖 · 失重崩溃 · 回调绿
+   情绪：一觉醒来行情天塌、居然还能回调的崩溃。
+   视觉隐喻：标题轻微倾斜失重（天塌倾斜）+ 绿色下跌情绪贯穿 +
+   暴跌现场截图居中 + 尾部下跌余波短线。
+   两行正文逐字照录，仅以绿调与倾斜感做情绪点缀，不做任何文字修饰。
+   仅本篇日记页面加载（diary.ejs 按 slug 条件引入），不作用于其他页面。 */
+
+.diary-post .content {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 5.2rem 1.4rem 5.5rem;
+  color: #d8dbd6;
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  line-height: 2.1;
+  letter-spacing: 0.06em;
+}
+
+/* 页面标题（front-matter title）：天塌感——失重倾斜 + 绿色下坠阴影 */
+.diary-post .content h1 {
+  text-align: center;
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-indent: 0.35em;
+  color: #e8eae6;
+  margin: 0 0 1.1rem;
+  transform: rotate(-1.4deg);
+  text-shadow: 0 16px 30px rgba(63, 185, 80, 0.22), 0 4px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* 断裂线：标题下方的「塌口」，虚线断痕 + 绿色微光 */
+.diary-post .content .tt-body .tt-fracture {
+  width: min(64%, 300px);
+  height: 2px;
+  margin: 0 auto 2.4rem;
+  border-top: 1px dashed rgba(63, 185, 80, 0.4);
+  background: linear-gradient(90deg, rgba(63, 185, 80, 0), rgba(63, 185, 80, 0.7), rgba(63, 185, 80, 0));
+}
+
+/* 诗行：靠左、宽松行距，保持逐字与换行 */
+.diary-post .content .tt-line {
+  display: block;
+  margin: 0;
+  font-size: 1.08rem;
+  line-height: 2.1;
+  text-indent: 0;
+}
+
+/* 第一行：天塌前的灰白（崩溃起点） */
+.diary-post .content .tt-1 {
+  color: #d8dbd6;
+  letter-spacing: 0.08em;
+}
+
+/* 暴跌现场截图：绿描边 + 失重倾斜 + 下坠投影 */
+.diary-post .content .tt-img {
+  margin: 2.4rem auto;
+  text-align: center;
+}
+.diary-post .content .tt-img img {
+  max-width: min(100%, 640px);
+  height: auto;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 4px;
+  background: #0d1117;
+  box-sizing: border-box;
+  outline: 1px solid rgba(63, 185, 80, 0.5);
+  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.5), 0 0 30px rgba(63, 185, 80, 0.12);
+  transform: rotate(-0.7deg);
+}
+
+/* 第二行：回调确认——下跌绿，情绪最重 */
+.diary-post .content .tt-2 {
+  color: #7ee2a8;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 18px rgba(63, 185, 80, 0.3);
+}
+
+/* 下跌余波：尾部竖直绿色短线渐隐，跌势未尽 */
+.diary-post .content .tt-fall {
+  position: relative;
+  width: 2px;
+  height: 110px;
+  margin: 3.2rem auto 0;
+  background: linear-gradient(180deg, rgba(63, 185, 80, 0.85), rgba(63, 185, 80, 0));
+}
+.diary-post .content .tt-fall::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: rgba(63, 185, 80, 0.5);
+  box-shadow: 0 0 12px rgba(63, 185, 80, 0.6);
+}
+
+/* 移动端收窄 */
+@media (max-width: 640px) {
+  .diary-post .content {
+    padding: 3.8rem 1.2rem 4.2rem;
+  }
+  .diary-post .content h1 {
+    font-size: 1.9rem;
+  }
+}

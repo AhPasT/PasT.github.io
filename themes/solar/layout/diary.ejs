@@ -70,6 +70,10 @@
       <!-- 本篇日记专属：《托举》酒色深夜排版（暖调暗色 / 琥珀微光标题 / 段间空行节奏下沉 / 酒线分隔 / 尾段微光渐隐） -->
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-22-tuoju.css') %>">
       <% } %>
+      <% if (page.entry.slug === '2026-10-22-一觉起来天塌了') { %>
+      <!-- 本篇日记专属：《一觉起来天塌了》天塌断崖排版（失重倾斜标题 / 回调绿贯穿 / 断裂线 / 暴跌现场截图 / 下跌余波短线） -->
+      <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-22-tian-ta.css') %>">
+      <% } %>
       <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
     <% } %>
   </div>
