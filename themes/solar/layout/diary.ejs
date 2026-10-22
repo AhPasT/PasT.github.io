@@ -66,6 +66,10 @@
       <!-- 本篇日记专属：《迟暮》黑白简约高级感排版（极简杂志黑白灰层次 / 精细字距行距 / 克制的留白 / 尾段独立区块灰阶反转） -->
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-19-chimu.css') %>">
       <% } %>
+      <% if (page.entry.slug === '2026-10-22-托举') { %>
+      <!-- 本篇日记专属：《托举》酒色深夜排版（暖调暗色 / 琥珀微光标题 / 段间空行节奏下沉 / 酒线分隔 / 尾段微光渐隐） -->
+      <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-22-tuoju.css') %>">
+      <% } %>
       <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
     <% } %>
   </div>

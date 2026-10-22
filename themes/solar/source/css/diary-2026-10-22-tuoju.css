@@ -1,0 +1,89 @@
+/* 日记「托举」专属排版：酒色深夜 · 暖调暗色 · 情绪层层下沉 */
+.diary-post .content .cmu-body {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 6.5rem 1.4rem 7rem;
+  color: #d9c9b8;
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  line-height: 2.1;
+  letter-spacing: 0.06em;
+}
+
+.diary-post .content .cmu-title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  text-align: center;
+  color: #f0c98a;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  margin: 0 0 3.6rem;
+  text-shadow: 0 0 22px rgba(240, 201, 138, 0.28);
+}
+
+/* 诗行：靠左、宽松行距，保持逐字与换行 */
+.diary-post .content .cmu-line {
+  display: block;
+  margin: 0;
+  font-size: 1.02rem;
+  line-height: 2.15;
+}
+
+/* 段间空行：跨行空段上移间距，保证空行肉眼可见（高特异修复） */
+.diary-post .content .cmu-line + .cmu-line.cmu-block {
+  margin-top: 2.4rem;
+}
+
+.diary-post .content .cmu-block {
+  color: #e6d8c8;
+}
+
+/* 深夜渐层：正文随段下沉，色调渐暖转沉 */
+.diary-post .content .cmu-line:nth-of-type(n+10) {
+  color: #cbb79f;
+}
+.diary-post .content .cmu-line:nth-of-type(n+14) {
+  color: #bca488;
+}
+
+/* 酒线分隔：细暖线 + 两侧微光 */
+.diary-post .content .cmu-rule {
+  margin: 3.2rem 0 3rem;
+  text-align: center;
+  color: #8a735a;
+  font-size: 0.92rem;
+  letter-spacing: 0.18em;
+  text-shadow: 0 0 14px rgba(240, 201, 138, 0.35);
+  user-select: none;
+}
+
+/* 尾段：独立区块，微光渐隐，不顶格 */
+.diary-post .content .cmu-final {
+  margin-top: 1rem;
+  padding: 2rem 0 0.5rem;
+  border-top: 1px solid rgba(138, 115, 90, 0.55);
+  background: linear-gradient(180deg, rgba(138, 115, 90, 0.16), rgba(138, 115, 90, 0));
+  color: #a9917a;
+}
+.diary-post .content .cmu-final .cmu-line {
+  font-size: 0.98rem;
+}
+.diary-post .content .cmu-final .cmu-line:first-child {
+  color: #d3bdA2;
+}
+.diary-post .content .cmu-final .cmu-line:last-child {
+  color: #f0c98a;
+  margin-top: 0.4rem;
+  letter-spacing: 0.5em;
+  text-shadow: 0 0 18px rgba(240, 201, 138, 0.35);
+}
+
+/* 移动端收窄 */
+@media (max-width: 640px) {
+  .diary-post .content .cmu-body {
+    padding: 4.5rem 1.2rem 5.5rem;
+  }
+  .diary-post .content .cmu-title {
+    font-size: 2rem;
+    margin-bottom: 3rem;
+  }
+}
