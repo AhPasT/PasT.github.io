@@ -1,0 +1,104 @@
+/* 日记「同寂」专属排版：深夜共感 · 凉意夜蓝 · 情绪缓缓下沉 · 末段俏皮自嘲
+   情绪：后知后觉发现情绪从不独属自己——室友接酒、跑步后无人消息、
+   哼歌落寞、兄弟群怀旧又笑又涩、朋友圈孤寂；末段自嘲「情感小王子」。
+   视觉隐喻：靛蓝深夜底色微光（共感的凉意）、诗行逐段下沉渐沉、
+   兄弟群怀旧段稍回暖调、末段自嘲带一点蓝紫俏皮微光收束。
+   正文逐字照录，空行通过段首 class 保持可见，9 张配图全部置于末尾。
+   仅本篇日记页面加载（diary.ejs 按 slug 条件引入），不作用于其他页面。 */
+
+.diary-post .content {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 5.2rem 1.4rem 5.5rem;
+  color: #c7d2ea;
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  line-height: 2.1;
+  letter-spacing: 0.05em;
+}
+
+/* 页面标题（front-matter title）：静夜标题，靛蓝夜光 */
+.diary-post .content h1 {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  text-indent: 0.45em;
+  color: #e8edfa;
+  margin: 0 0 3.2rem;
+  text-shadow: 0 0 26px rgba(130, 150, 220, 0.3), 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* 诗行：靠左、宽松行距，保持逐字与换行 */
+.diary-post .content .tj-line {
+  display: block;
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 2.1;
+  text-indent: 0;
+}
+
+/* 首行「同寂」小标：比正文稍亮、字距略宽，承接页标题但不抢戏 */
+.diary-post .content .tj-first {
+  color: #dfe7f6;
+  letter-spacing: 0.3em;
+  margin-bottom: 0.2rem;
+}
+
+/* 段间空行：段首行上移间距，保证空行肉眼可见（高特异修复） */
+.diary-post .content .tj-line + .tj-line.tj-block {
+  margin-top: 2.4rem;
+}
+
+/* 正文随段下沉：前段较亮，中段渐沉，深夜共感的凉意层层加深 */
+.diary-post .content .tj-line:nth-of-type(n+18) {
+  color: #b7c2de;
+}
+.diary-post .content .tj-line:nth-of-type(n+30) {
+  color: #a8b3d2;
+}
+.diary-post .content .tj-line:nth-of-type(n+38) {
+  color: #9ba6c6;
+}
+
+/* 兄弟群怀旧段：一丝暖调微光，呼应「又笑又涩」的温度 */
+.diary-post .content .tj-line:nth-of-type(n+41) {
+  color: #c3c9e6;
+}
+
+/* 末段自嘲：蓝紫俏皮微光收束（情感小王子） */
+.diary-post .content .tj-coda {
+  color: #d9ccff;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 16px rgba(180, 150, 255, 0.28);
+}
+
+/* 配图区：全部置于文末，单列依次排列，细框 + 轻投影 */
+.diary-post .content .tj-imgs {
+  margin-top: 3.6rem;
+}
+.diary-post .content .tj-imgs img {
+  display: block;
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  margin: 0 auto 1.5rem;
+  border-radius: 8px;
+  outline: 1px solid rgba(130, 150, 220, 0.22);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+  background: #0d1117;
+  padding: 3px;
+  box-sizing: border-box;
+}
+.diary-post .content .tj-imgs img:last-child {
+  margin-bottom: 0;
+}
+
+/* 移动端收窄 */
+@media (max-width: 640px) {
+  .diary-post .content {
+    padding: 3.8rem 1.2rem 4.2rem;
+  }
+  .diary-post .content h1 {
+    font-size: 1.9rem;
+  }
+}
