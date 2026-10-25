@@ -1,0 +1,98 @@
+/* 日记「为什么」专属排版：地铁站台 · 冷灰蓝调 · 通道意象 · 人群隔开 · 追丢出口 · 末段质问渐重 · 省略号渐隐收束
+   情绪：地铁偶遇旧人，远远望着不敢上前；人群涌来又把两人隔开；
+   追向出口却再没看见；站在门口良久，质问为什么一次次勾起又丢下。
+   视觉隐喻：冷灰蓝底色如清晨站台（失落而克制）、左侧细线如站台通道/
+   屏蔽门轨道（隔开的意象）、诗行段距渐次下沉（人群裹挟中被越推越远）、
+   末段质问色阶渐亮字重渐增（语气渐重）、结尾省略号淡出渐隐（余音收束）。
+   正文逐字照录，空行通过段首 class 保持可见，无配图。
+   仅本篇日记页面加载（diary.ejs 按 slug 条件引入），不作用于其他页面。 */
+
+.diary-post .content {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 5.4rem 1.5rem 6rem;
+  color: #b8c4d6;
+  font-family: "Songti SC", "STSong", "Noto Serif SC", serif;
+  line-height: 2.15;
+  letter-spacing: 0.06em;
+}
+
+/* 页面标题（front-matter title）：冷灰蓝站台灯箱感，克制 */
+.diary-post .content h1 {
+  text-align: center;
+  font-size: 2.1rem;
+  font-weight: 700;
+  letter-spacing: 0.5em;
+  text-indent: 0.5em;
+  color: #cdd6e6;
+  margin: 0 0 3.4rem;
+  text-shadow: 0 0 24px rgba(140, 165, 210, 0.25);
+}
+
+/* 日期：站台小牌 */
+.diary-post .content .diary-date {
+  display: block;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: #6f7c92;
+  margin: -2.2rem 0 3.4rem;
+}
+
+/* 诗行容器：左侧细线如站台通道/屏蔽门轨道，正文与轨道之间留出呼吸 */
+.diary-post .content .ws-body {
+  position: relative;
+  border-left: 1px solid rgba(130, 150, 185, 0.28);
+  padding-left: 1.9rem;
+  margin-left: 0.4rem;
+}
+
+/* 诗行：靠左、宽松行距，保持逐字与换行 */
+.diary-post .content .ws-line {
+  display: block;
+  margin: 0;
+  font-size: 1.03rem;
+  line-height: 2.15;
+  text-indent: 0;
+}
+
+/* 首节：稍亮一点，像站台上先认出了你 */
+.diary-post .content .ws-first {
+  color: #d3dcec;
+}
+
+/* 节与节之间的空行：通过段距呈现，人群裹挟中段距渐次加大（被越推越远） */
+.diary-post .content .ws-block {
+  margin-top: 2.3rem;
+}
+
+/* 追出口后落空：单独一行，色调更冷、留白更大 */
+.diary-post .content .ws-line.ws-lost {
+  margin-top: 3.4rem;
+  color: #9aa8bf;
+}
+
+/* 站门口良久：下沉感更重 */
+.diary-post .content .ws-line.ws-station {
+  margin-top: 3.1rem;
+}
+
+/* 末段质问：色阶渐亮、字重渐增，语气渐重 */
+.diary-post .content .ws-why {
+  color: #cdd6e6;
+}
+.diary-post .content .ws-why-strong {
+  font-weight: 700;
+  color: #dfe6f2;
+  letter-spacing: 0.12em;
+}
+
+/* 结尾省略号渐隐收束 */
+.diary-post .content .ws-fade {
+  margin-top: 2rem;
+  opacity: 0.65;
+  color: #8b99b0;
+}
+.diary-post .content .ws-fade-last {
+  opacity: 0.3;
+}
