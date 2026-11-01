@@ -82,6 +82,11 @@
       <!-- 本篇日记专属：《为什么》地铁站台排版（冷灰蓝调 / 站台通道细线 / 人群隔开 / 追丢出口 / 末段质问渐重 / 省略号渐隐收束） -->
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-10-25-wei-shi-me.css') %>">
       <% } %>
+      <% if (page.entry.slug === '2026-11-01-甜酒') { %>
+      <!-- 本篇日记专属：《甜酒》微醺甜暖排版（蜂蜜光晕 / 正文两行夹竖图 / 后两张错落并排 / 背景音乐可控播放） -->
+      <link rel="stylesheet" href="<%- url_for('/css/diary-2026-11-01-tian-jiu.css') %>">
+      <script src="<%- url_for('/js/diary-2026-11-01-tian-jiu.js') %>"></script>
+      <% } %>
       <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
     <% } %>
   </div>
