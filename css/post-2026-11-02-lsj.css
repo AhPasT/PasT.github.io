@@ -1,0 +1,286 @@
+/* ============ 冷水江案 · 那场未曾落下的暴雨 ============
+   深色阴雨调 · 克制 · 案件纪实排版
+   仅作用于 .lsj-article 作用域，不影响博客其他页面 */
+
+.lsj-article {
+  --lsj-line: #5d6673;      /* 细线 / 弱文本 */
+  --lsj-ink: #cdd3dc;       /* 正文主色 */
+  --lsj-dim: #8b94a1;       /* 次级文本 */
+  --lsj-rain: rgba(120, 145, 175, 0.10);
+  --lsj-def:  #93adc8;      /* 被告人自述 · 雾蓝 */
+  --lsj-court:#c08a7a;      /* 法院认定 · 暗红 */
+  --lsj-evid: #8fae9a;      /* 客观证据 · 暗绿 */
+  --lsj-disp: #b7a27e;      /* 双方争议 · 暗金 */
+
+  color: var(--lsj-ink);
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: 0.97rem;
+  line-height: 1.95;
+  letter-spacing: 0.01em;
+}
+
+.lsj-article p {
+  margin: 1.05em 0;
+  text-align: justify;
+  line-height: 1.95;
+}
+
+/* ---------- 引言区 ---------- */
+.lsj-hero {
+  position: relative;
+  padding: 2.2em 1.4em 2.0em;
+  margin: 1.2em 0 2.4em;
+  text-align: center;
+  border-top: 1px solid rgba(125, 145, 165, 0.35);
+  border-bottom: 1px solid rgba(125, 145, 165, 0.35);
+  background:
+    radial-gradient(ellipse at 50% 0%, var(--lsj-rain) 0%, transparent 70%);
+}
+
+.lsj-hero .lsj-hero-kicker {
+  margin: 0 0 0.9em;
+  font-size: 0.72rem;
+  letter-spacing: 0.32em;
+  text-indent: 0.32em;
+  color: var(--lsj-dim);
+  text-transform: uppercase;
+}
+
+.lsj-hero .lsj-hero-line {
+  margin: 0 0 0.6em;
+  font-size: 1.08rem;
+  letter-spacing: 0.06em;
+  color: var(--lsj-def);
+}
+
+.lsj-hero .lsj-hero-src {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--lsj-dim);
+  letter-spacing: 0.03em;
+}
+
+/* ---------- 目录 ---------- */
+.lsj-toc {
+  margin: 0 0 3em;
+  padding: 1.6em 1.8em;
+  border: 1px solid rgba(125, 145, 165, 0.22);
+  background: rgba(10, 14, 20, 0.35);
+}
+
+.lsj-toc .lsj-toc-title {
+  margin: 0 0 1.1em;
+  font-size: 0.85rem;
+  letter-spacing: 0.28em;
+  color: var(--lsj-dim);
+  font-weight: normal;
+  text-align: center;
+}
+
+.lsj-toc ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lsj-toc li {
+  position: relative;
+  padding: 0.38em 3.2em 0.38em 0;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  border-bottom: 1px dashed rgba(125, 145, 165, 0.10);
+}
+
+.lsj-toc li:last-child { border-bottom: none; }
+
+.lsj-toc li.l1 { font-weight: 600; color: var(--lsj-ink); letter-spacing: 0.02em; }
+.lsj-toc li.l2 { padding-left: 1.6em; color: var(--lsj-dim); font-weight: 400; }
+
+.lsj-toc a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+}
+.lsj-toc a:hover { border-bottom-color: var(--lsj-dim); color: var(--lsj-def); }
+
+.lsj-toc .toc-page {
+  position: absolute;
+  right: 0.2em;
+  top: 0.38em;
+  color: rgba(139, 148, 161, 0.55);
+  font-size: 0.78rem;
+}
+
+/* ---------- 章节标题 ---------- */
+.lsj-article h1 {
+  margin: 2.6em 0 1.3em;
+  padding-top: 1.4em;
+  font-size: 1.32rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-align: center;
+  color: var(--lsj-ink);
+  border-top: 1px solid rgba(125, 145, 165, 0.28);
+  position: relative;
+}
+
+.lsj-article h1::after {
+  content: "";
+  display: block;
+  width: 34px;
+  height: 1px;
+  margin: 1.1em auto 0;
+  background: rgba(147, 173, 200, 0.55);
+}
+
+.lsj-article h2 {
+  margin: 2.1em 0 0.9em;
+  padding-left: 0.85em;
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--lsj-def);
+  border-left: 2px solid rgba(147, 173, 200, 0.55);
+}
+
+/* 写在前面（第一篇）标题不加顶边 */
+.lsj-article h1:first-of-type { margin-top: 0.6em; }
+
+/* ---------- 正文段落 ---------- */
+.lsj-article .sblock {
+  margin: 1.25em 0;
+  padding: 0.9em 1.15em;
+  background: rgba(125, 145, 165, 0.05);
+  border-left: 2px solid transparent;
+}
+
+.lsj-article .sblock.s-def { border-left-color: rgba(147, 173, 200, 0.45); }
+.lsj-article .sblock.s-court { border-left-color: rgba(192, 138, 122, 0.5); }
+.lsj-article .sblock.s-evid { border-left-color: rgba(143, 174, 154, 0.5); }
+.lsj-article .sblock.s-disp { border-left-color: rgba(183, 162, 126, 0.5); }
+
+/* 来源标签 */
+.lsj-article .src {
+  display: inline-block;
+  margin-right: 0.6em;
+  padding: 0.14em 0.65em;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  white-space: nowrap;
+  border-radius: 2px;
+  vertical-align: 0.12em;
+}
+
+.lsj-article .s-def .src {
+  color: var(--lsj-def);
+  background: rgba(147, 173, 200, 0.12);
+  border: 1px solid rgba(147, 173, 200, 0.4);
+}
+.lsj-article .s-court .src {
+  color: var(--lsj-court);
+  background: rgba(192, 138, 122, 0.12);
+  border: 1px solid rgba(192, 138, 122, 0.4);
+}
+.lsj-article .s-evid .src {
+  color: var(--lsj-evid);
+  background: rgba(143, 174, 154, 0.12);
+  border: 1px solid rgba(143, 174, 154, 0.4);
+}
+.lsj-article .s-disp .src {
+  color: var(--lsj-disp);
+  background: rgba(183, 162, 126, 0.12);
+  border: 1px solid rgba(183, 162, 126, 0.4);
+}
+
+/* 写在前面的三点加粗（保留原文 strong） */
+.lsj-article p strong { color: #e2e7ee; font-weight: 600; }
+
+/* 注释小字 */
+.lsj-article .snote {
+  font-size: 0.82rem;
+  color: var(--lsj-dim);
+  line-height: 1.7;
+  padding-left: 1em;
+  border-left: 1px solid rgba(125, 145, 165, 0.28);
+}
+
+/* 结语说明 */
+.lsj-article .sclosure {
+  margin-top: 2.2em;
+  padding-top: 1.2em;
+  font-size: 0.78rem;
+  color: var(--lsj-dim);
+  border-top: 1px dashed rgba(125, 145, 165, 0.35);
+}
+
+/* ---------- 列表（DNA 结论） ---------- */
+.lsj-article ol.lsj-dna {
+  margin: 1.2em 0 1.2em 1.6em;
+  padding: 0;
+}
+
+.lsj-article ol.lsj-dna li {
+  margin: 0.6em 0;
+  padding-left: 0.5em;
+  line-height: 1.9;
+}
+
+/* ---------- 表格 ---------- */
+.lsj-article table {
+  width: 100%;
+  margin: 1.6em 0;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  background: rgba(10, 14, 20, 0.35);
+}
+
+.lsj-article th {
+  padding: 0.7em 0.8em;
+  text-align: left;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--lsj-def);
+  background: rgba(147, 173, 200, 0.10);
+  border: 1px solid rgba(125, 145, 165, 0.25);
+}
+
+.lsj-article td {
+  padding: 0.65em 0.8em;
+  vertical-align: top;
+  color: var(--lsj-ink);
+  border: 1px solid rgba(125, 145, 165, 0.18);
+}
+
+.lsj-article tr:nth-child(even) td {
+  background: rgba(125, 145, 165, 0.04);
+}
+
+/* ---------- 参考资料 ---------- */
+.lsj-article ol.lsj-ref {
+  margin: 1.4em 0 0;
+  padding: 0 0 0 1.5em;
+  font-size: 0.8rem;
+  line-height: 1.85;
+  color: var(--lsj-dim);
+}
+
+.lsj-article ol.lsj-ref li {
+  margin: 0.5em 0;
+  word-break: break-all;
+}
+
+.lsj-article ol.lsj-ref a { color: var(--lsj-def); }
+
+/* 锚点平滑 */
+.lsj-article a[id] { scroll-margin-top: 24px; }
+
+/* 移动端适配 */
+@media (max-width: 640px) {
+  .lsj-article { font-size: 0.95rem; }
+  .lsj-toc { padding: 1.2em 1.2em; }
+  .lsj-article table { font-size: 0.74rem; }
+  .lsj-article th, .lsj-article td { padding: 0.5em 0.5em; }
+}
