@@ -1,29 +1,31 @@
 /**
- * 首页「更新提示」横条
+ * 首页「推荐阅读」区块
  * ---------------------------------------------------------------
- * 作用：扫描日记（source/diary/*.md）与文章（source/_posts），
- *      找出最近一次更新，并在首页「About（介绍）段落之后、Writing（文章列表）之前」
- *      插入一条小字提示，写明「板块 · 内容标题 · 日期」，整条可点击跳转到对应页面。
+ * 作用：在首页「About（介绍）段落之后、Writing（文章列表）之前」
+ *      插入一条固定精选（推荐阅读），不再自动取最新更新的日记。
+ *      当前固定推荐：迟暮（2026-10-19）。
  *
  * 特点：不修改主题任何文件（HTML 与样式均由本脚本在渲染后注入），
  *      样式覆写在 </head> 前，因此后续主题更新不会与本功能冲突。
  *
- * 可调参数：见下方 CONFIG
+ * 可调参数：见下方 CONFIG.featured
  */
 
 const fs = require('fs');
 const path = require('path');
 
 const CONFIG = {
-  recentDays: 30,   // 最新更新距今天数超过该值则认为「近期无更新」，不显示提示
-  maxItems: 1,      // 最多展示几条（1 = 仅展示最新一条，保持「一条小字」的克制感）
-  sections: {
-    diary: 'Diary',   // 日记板块显示名
-    post: 'Writing'   // 文章板块显示名
-  }
+  // 固定精选条目：不再自动轮换/自动取最新日记
+  featured: [
+    {
+      section: 'Diary',                     // 板块显示名
+      title: '迟暮',                        // 标题
+      decoratedTitle: '《迟暮》',            // 展示标题（带书名号）
+      date: '2026-10-19',                   // 展示日期
+      url: 'diary/2026-10-19-迟暮/'         // 跳转路径（相对站点根）
+    }
+  ]
 };
-
-const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
 function pad(n) {
   return n < 10 ? '0' + n : '' + n;
@@ -41,80 +43,24 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-function cleanValue(raw) {
-  return String(raw).trim().replace(/^["']/, '').replace(/["']$/, '').trim();
-}
-
-/** 收集日记条目 */
-function collectDiaryItems() {
-  const diaryDir = path.join(hexo.source_dir, 'diary');
-  if (!fs.existsSync(diaryDir)) return [];
-
-  return fs.readdirSync(diaryDir)
-    .filter(f => f.endsWith('.md') && f !== 'index.md')
-    .map(file => {
-      const raw = fs.readFileSync(path.join(diaryDir, file), 'utf-8');
-      const slug = file.replace(/\.md$/, '');
-      let title = '';
-      let dateStr = '';
-
-      const fmMatch = raw.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/);
-      if (fmMatch) {
-        const titleMatch = fmMatch[1].match(/^title:\s*(.+)$/m);
-        if (titleMatch) title = cleanValue(titleMatch[1]);
-        const dateMatch = fmMatch[1].match(/^date:\s*(.+)$/m);
-        if (dateMatch) dateStr = cleanValue(dateMatch[1]);
-      }
-      if (!title) title = slug.replace(/^\d{4}-\d{2}-\d{2}-/, '');
-
-      const date = new Date(dateStr || slug.slice(0, 10));
-      return {
-        section: CONFIG.sections.diary,
-        title: title,
-        decoratedTitle: '《' + title + '》',
-        date: date,
-        url: 'diary/' + slug + '/',
-        kind: 'diary'
-      };
-    })
-    .filter(item => !isNaN(item.date.getTime()));
-}
-
-/** 收集文章条目 */
-function collectPostItems() {
-  const posts = hexo.locals.get('posts');
-  if (!posts || !posts.length) return [];
-
-  const items = [];
-  posts.each(post => {
-    const date = new Date(post.date);
-    if (isNaN(date.getTime())) return;
-    items.push({
-      section: CONFIG.sections.post,
-      title: post.title,
-      decoratedTitle: post.title,
-      date: date,
-      url: post.path,
-      kind: 'post'
-    });
+/** 取固定精选条目 */
+function pickFeaturedItems() {
+  return CONFIG.featured.map(function (item) {
+    return {
+      section: item.section,
+      title: item.title,
+      decoratedTitle: item.decoratedTitle,
+      date: new Date(item.date),
+      url: item.url,
+      kind: 'diary'
+    };
   });
-  return items;
-}
-
-function pickRecentItems() {
-  const now = Date.now();
-  const all = collectDiaryItems().concat(collectPostItems())
-    .sort((a, b) => b.date - a.date);
-
-  return all
-    .filter(item => (now - item.date.getTime()) / MS_PER_DAY <= CONFIG.recentDays)
-    .slice(0, CONFIG.maxItems);
 }
 
 /* ------------------------- 样式 ------------------------- */
 const STYLE = `
 <style id="update-notice-style">
-/* 首页更新提示横条（由 scripts/update-notice.js 注入，不占用主题样式文件） */
+/* 首页推荐阅读区块（由 scripts/update-notice.js 注入，不占用主题样式文件） */
 .content .update-notice {
   margin: 1.4em 0 1.8em;
   font-size: 0.8rem;
@@ -210,7 +156,7 @@ function buildNoticeHtml(items) {
 
   const rows = items.map(item => [
     '    <a class="update-notice-link" href="' + escapeHtml(urlFor(item.url)) + '">',
-    '      <span class="update-notice-badge">更新</span>',
+    '      <span class="update-notice-badge">推荐阅读</span>',
     '      <span class="update-notice-section">' + escapeHtml(item.section) + '</span>',
     '      <span class="update-notice-sep">·</span>',
     '      <span class="update-notice-title">' + escapeHtml(item.decoratedTitle) + '</span>',
@@ -219,7 +165,7 @@ function buildNoticeHtml(items) {
   ].join('\n')).join('\n');
 
   return [
-    '<aside class="update-notice" role="note" aria-label="最近更新">',
+    '<aside class="update-notice" role="note" aria-label="推荐阅读">',
     rows,
     '</aside>',
     ''
@@ -231,7 +177,7 @@ hexo.extend.filter.register('after_render:html', function (html, data) {
   // 仅首页
   if (!data || data.path !== 'index.html') return html;
 
-  const items = pickRecentItems();
+  const items = pickFeaturedItems();
   if (!items.length) return html;
 
   const notice = buildNoticeHtml(items);
@@ -244,7 +190,7 @@ hexo.extend.filter.register('after_render:html', function (html, data) {
   } else if (fallback.test(html)) {
     html = html.replace(fallback, '$&' + notice);
   } else {
-    hexo.log.warn('[update-notice] 未找到首页插入锚点，已跳过更新提示');
+    hexo.log.warn('[update-notice] 未找到首页插入锚点，已跳过推荐阅读');
     return html;
   }
 
@@ -252,7 +198,7 @@ hexo.extend.filter.register('after_render:html', function (html, data) {
     html = html.replace('</head>', STYLE + '</head>');
   }
 
-  hexo.log.info('[update-notice] 首页更新提示：' + items
+  hexo.log.info('[update-notice] 首页推荐阅读：' + items
     .map(i => i.section + ' ' + i.decoratedTitle + '（' + formatDate(i.date) + '）')
     .join('；'));
 
