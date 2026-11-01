@@ -1,76 +1,50 @@
-/* 日记「甜酒」专属排版：微醺俏皮 · 甜暖蜜调 · 照片穿插有节奏 */
+/* 日记「甜酒」专属排版：素净简洁 · 浅色克制 · 照片穿插有节奏 */
 .diary-post .content .tj-body {
-  max-width: 600px;
+  max-width: 620px;
   margin: 0 auto;
-  padding: 4.5rem 1.6rem 5rem;
-  border-radius: 18px;
-  background: linear-gradient(180deg, #fff9ef 0%, #fff2e2 58%, #ffedd9 100%);
-  box-shadow: 0 14px 40px rgba(224, 158, 102, 0.18), inset 0 0 60px rgba(255, 224, 184, 0.35);
-  position: relative;
-  overflow: hidden;
+  padding: 4rem 1.6rem 4.5rem;
+  background: #fdfbf8;
+  border: 1px solid #eee7de;
+  border-radius: 12px;
 }
 
-/* 微醺光斑点缀：细碎蜜光，克制不抢镜 */
-.diary-post .content .tj-body::before,
-.diary-post .content .tj-body::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(2px);
-}
-.diary-post .content .tj-body::before {
-  width: 130px; height: 130px;
-  top: -42px; right: -28px;
-  background: rgba(255, 214, 154, 0.5);
-}
-.diary-post .content .tj-body::after {
-  width: 74px; height: 74px;
-  bottom: 22px; left: -20px;
-  background: rgba(255, 190, 150, 0.36);
-}
-
-/* 标题：蜂蜜琥珀微光 */
+/* 标题：简洁深灰，克制字距 */
 .diary-post .content h1 {
-  color: #c26b3c;
-  font-size: 2.5rem;
+  color: #3a3631;
+  font-size: 2.3rem;
   font-weight: 600;
   text-align: center;
-  letter-spacing: 0.42em;
-  text-indent: 0.42em;
-  margin: 1.2rem 0 2.2rem;
-  text-shadow: 0 0 26px rgba(240, 166, 110, 0.4);
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  margin: 1rem 0 2rem;
 }
 .diary-post .content .diary-date {
   display: block;
   text-align: center;
-  color: #c89a72;
-  font-size: 0.9rem;
-  letter-spacing: 0.2em;
-  margin: -1.4rem 0 2.6rem;
+  color: #a89f92;
+  font-size: 0.88rem;
+  letter-spacing: 0.18em;
+  margin: -1.2rem 0 2.4rem;
 }
 
-/* 正文诗行：逐字、大字、宽松行距 */
+/* 正文诗行：逐字、简洁深灰 */
 .diary-post .content .tj-line {
   display: block;
   margin: 0;
-  font-size: 1.38rem;
-  line-height: 2.15;
-  letter-spacing: 0.08em;
-  color: #9c6a45;
-}
-.diary-post .content .tj-line.tj-p1 {
+  font-size: 1.32rem;
+  line-height: 2.1;
+  letter-spacing: 0.06em;
+  color: #46423c;
   text-align: center;
 }
 .diary-post .content .tj-line.tj-p2 {
-  text-align: center;
-  margin-top: 1.9rem;
+  margin-top: 1.6rem;
 }
 
 /* 第一张照片：竖图居中，文字两行之间 */
 .diary-post .content .tj-img-main {
-  margin: 1.7rem auto 0.2rem;
-  max-width: 420px;
+  margin: 1.5rem auto 0;
+  max-width: 400px;
   text-align: center;
 }
 .diary-post .content .tj-img-main img {
@@ -78,16 +52,16 @@
   height: auto;
   max-height: 66vh;
   object-fit: cover;
-  border-radius: 16px;
-  box-shadow: 0 20px 46px rgba(210, 138, 88, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.55) inset;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(90, 80, 68, 0.14);
 }
 
-/* 后两张：错落并排，一宽一窄、右图下沉微倾 */
+/* 后两张：简洁并排，轻微错落留白 */
 .diary-post .content .tj-img-row {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: flex-start;
-  margin-top: 2.6rem;
+  margin-top: 2.2rem;
 }
 .diary-post .content .tj-img {
   margin: 0;
@@ -97,67 +71,64 @@
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 14px;
-  box-shadow: 0 14px 32px rgba(200, 130, 80, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 8px 22px rgba(90, 80, 68, 0.12);
 }
 .diary-post .content .tj-img-a {
-  flex: 1.32;
+  flex: 1.3;
 }
 .diary-post .content .tj-img-b {
   flex: 1;
-  margin-top: 2.1rem;
-  transform: rotate(-1.2deg);
-}
-.diary-post .content .tj-img-a img {
-  transform: rotate(0.6deg);
+  margin-top: 1.8rem;
 }
 
-/* 背景音乐：右下角胶囊按钮，甜暖色 */
+/* 背景音乐：右下角简洁按钮 */
 .diary-post .tj-bgm-wrap {
   text-align: center;
-  margin: 1.2rem 0 0;
+  margin: 1rem 0 0;
 }
 .diary-post .tj-bgm-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.55em;
-  padding: 0.55em 1.25em;
-  border: 1px solid rgba(222, 160, 110, 0.5);
+  gap: 0.5em;
+  padding: 0.5em 1.2em;
+  border: 1px solid #d8d0c4;
   border-radius: 999px;
-  background: rgba(255, 247, 235, 0.9);
-  color: #b26a3c;
-  font-size: 0.92rem;
-  letter-spacing: 0.08em;
+  background: #fff;
+  color: #5c554b;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
   cursor: pointer;
-  transition: box-shadow 0.25s ease, background 0.25s ease;
+  transition: border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 .diary-post .tj-bgm-btn:hover {
-  background: #fff3e1;
-  box-shadow: 0 6px 20px rgba(222, 150, 96, 0.28);
+  border-color: #c3b5a2;
+  color: #3a3631;
+  box-shadow: 0 4px 14px rgba(90, 80, 68, 0.12);
 }
 .diary-post .tj-bgm-btn.playing .tj-bgm-icon {
-  animation: tj-breathe 1.6s ease-in-out infinite;
+  animation: tj-breathe 1.8s ease-in-out infinite;
 }
 @keyframes tj-breathe {
-  0%, 100% { opacity: 1; text-shadow: 0 0 10px rgba(240, 160, 100, 0.55); }
-  50% { opacity: 0.45; text-shadow: none; }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 
 /* 移动端收窄 */
 @media (max-width: 640px) {
   .diary-post .content .tj-body {
-    padding: 3.2rem 1.1rem 3.8rem;
+    padding: 3rem 1.1rem 3.4rem;
   }
   .diary-post .content h1 {
     font-size: 2rem;
-    letter-spacing: 0.32em;
-    text-indent: 0.32em;
+    letter-spacing: 0.24em;
+    text-indent: 0.24em;
   }
   .diary-post .content .tj-line {
-    font-size: 1.22rem;
+    font-size: 1.2rem;
   }
   .diary-post .content .tj-img-main {
-    max-width: 340px;
+    max-width: 320px;
   }
   .diary-post .content .tj-img-row {
     gap: 10px;
