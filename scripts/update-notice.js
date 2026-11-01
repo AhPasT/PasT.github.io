@@ -1,18 +1,15 @@
 /**
- * 首页「推荐阅读」区块
+ * 首页「精选」区块
  * ---------------------------------------------------------------
  * 作用：在首页「About（介绍）段落之后、Writing（文章列表）之前」
- *      插入一条固定精选（推荐阅读），不再自动取最新更新的日记。
- *      当前固定推荐：迟暮（2026-10-19）。
+ *      插入一条固定精选，不再自动取最新更新的日记。
+ *      当前固定精选：迟暮（2026-10-19）。
  *
  * 特点：不修改主题任何文件（HTML 与样式均由本脚本在渲染后注入），
  *      样式覆写在 </head> 前，因此后续主题更新不会与本功能冲突。
  *
  * 可调参数：见下方 CONFIG.featured
  */
-
-const fs = require('fs');
-const path = require('path');
 
 const CONFIG = {
   // 固定精选条目：不再自动轮换/自动取最新日记
@@ -60,7 +57,7 @@ function pickFeaturedItems() {
 /* ------------------------- 样式 ------------------------- */
 const STYLE = `
 <style id="update-notice-style">
-/* 首页推荐阅读区块（由 scripts/update-notice.js 注入，不占用主题样式文件） */
+/* 首页精选区块（由 scripts/update-notice.js 注入，不占用主题样式文件） */
 .content .update-notice {
   margin: 1.4em 0 1.8em;
   font-size: 0.8rem;
@@ -156,7 +153,7 @@ function buildNoticeHtml(items) {
 
   const rows = items.map(item => [
     '    <a class="update-notice-link" href="' + escapeHtml(urlFor(item.url)) + '">',
-    '      <span class="update-notice-badge">推荐阅读</span>',
+    '      <span class="update-notice-badge">精选</span>',
     '      <span class="update-notice-section">' + escapeHtml(item.section) + '</span>',
     '      <span class="update-notice-sep">·</span>',
     '      <span class="update-notice-title">' + escapeHtml(item.decoratedTitle) + '</span>',
@@ -165,7 +162,7 @@ function buildNoticeHtml(items) {
   ].join('\n')).join('\n');
 
   return [
-    '<aside class="update-notice" role="note" aria-label="推荐阅读">',
+    '<aside class="update-notice" role="note" aria-label="精选">',
     rows,
     '</aside>',
     ''
@@ -190,7 +187,7 @@ hexo.extend.filter.register('after_render:html', function (html, data) {
   } else if (fallback.test(html)) {
     html = html.replace(fallback, '$&' + notice);
   } else {
-    hexo.log.warn('[update-notice] 未找到首页插入锚点，已跳过推荐阅读');
+    hexo.log.warn('[update-notice] 未找到首页插入锚点，已跳过精选');
     return html;
   }
 
@@ -198,7 +195,7 @@ hexo.extend.filter.register('after_render:html', function (html, data) {
     html = html.replace('</head>', STYLE + '</head>');
   }
 
-  hexo.log.info('[update-notice] 首页推荐阅读：' + items
+  hexo.log.info('[update-notice] 首页精选：' + items
     .map(i => i.section + ' ' + i.decoratedTitle + '（' + formatDate(i.date) + '）')
     .join('；'));
 
