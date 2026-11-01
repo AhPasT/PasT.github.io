@@ -68,6 +68,23 @@
   margin-top: 1.8rem;
 }
 
+/* 单张：居中留白（横向/竖图通用） */
+.diary-post .content .tj-img-single {
+  margin: 1.6rem auto 0;
+  max-width: 520px;
+  text-align: center;
+}
+.diary-post .content .tj-img-single img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+.diary-post .content .tj-img-single.tall {
+  max-width: 400px;
+  margin-top: 2rem;
+}
+
 /* 移动端收窄 */
 @media (max-width: 640px) {
   .diary-post .content h1 {
