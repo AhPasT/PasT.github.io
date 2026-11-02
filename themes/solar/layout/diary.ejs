@@ -87,6 +87,11 @@
       <link rel="stylesheet" href="<%- url_for('/css/diary-2026-11-01-tian-jiu.css') %>">
       <script src="<%- url_for('/js/diary-2026-11-01-tian-jiu.js') %>"></script>
       <% } %>
+      <% if (page.entry.slug === '2026-11-02-爆仓') { %>
+      <!-- 本篇日记专属：《爆仓》深夜复盘冷静排版（低饱和灰蓝调 / 竖屏视频 + 时间轴播放器 / 逐字正文 / 三图居中竖排） -->
+      <link rel="stylesheet" href="<%- url_for('/css/diary-2026-11-02-bao-cang.css') %>">
+      <script src="<%- url_for('/js/diary-2026-11-02-bao-cang.js') %>"></script>
+      <% } %>
       <p style="margin-top: 2em;"><a href="<%- url_for('/diary/') %>">← 返回日记列表</a></p>
     <% } %>
   </div>
